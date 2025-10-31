@@ -1,32 +1,29 @@
 ---
-Sash Zats grew to be a Staff Engineer (IC6) at Meta despite switching teams 10 times in 9 years. His career journey was a series of jumps to exciting projects and letting career growth happen as a byproduct. I interviewed him to show you how team switches can play out.
+guest_name: Sash Zats
+biggest_role: Staff Engineer (IC6) at Meta
+current_company: Meta 
+company_size: 70000
+yoe-starting: 2007
+episode_date: 08/08/2025
+episode_duration: 48
+episode_title: Instagram Staff (IC6) Promo Despite 10 Team Switches in 9 Years (Career Story)
+episode_description: Sash Zats grew to be a Staff Engineer (IC6) at Meta despite switching teams 10 times in 9 years. His career journey was a series of jumps to exciting projects and letting career growth happen as a byproduct. I interviewed him to show you how team switches can play out.
+guest_background: Software engineer at Instagram Sash has been working at Meta for over 8 years focusing on 0 to 1 spaces with focus on innovation at scale.
+topics:  
+[
+    First team: iOS on Newsfeed Delight,
+    What makes a good designer partner?,
+    Joining a hardware team,
+    2 diffs in 6 months,
+    Joining the Instagram blockchain team,
+    Joining Instagram Threads pre-launch,
+    Working with an exceptional engineer (Peter),
+    Working on AI prototyping teams,
+    Reflecting on team switching’s impact on career growth,
+    Why leave Meta,
+    Advice for younger self
+]
 ---
-
-# Instagram Staff (IC6) Promo Despite 10 Team Switches in 9 Years (Career Story)
-
-Timestamps
-(00:49) First team: iOS on Newsfeed Delight
-
-(05:30) What makes a good designer partner?
-
-(08:30) Joining a hardware team
-
-(12:08) 2 diffs in 6 months
-
-(15:03) Joining the Instagram blockchain team
-
-(21:37) Joining Instagram Threads pre-launch
-
-(28:53) Working with an exceptional engineer (Peter)
-
-(33:02) Working on AI prototyping teams
-
-(37:15) Reflecting on team switching’s impact on career growth
-
-(44:35) Why leave Meta
-
-(46:15) Advice for younger self
-
 Transcript
 00:49 – First team: iOS on Newsfeed Delight
 Ryan 00:00:49:

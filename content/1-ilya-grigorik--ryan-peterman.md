@@ -3,7 +3,7 @@ guest_name: Ilya Grigorik
 biggest_role: Distinguished Engineer at Shopify
 current_company: Shopify 
 company_size: 8000
-YOE-starting: 2002
+yoe-starting: 2002
 episode_date: 24/10/2025
 episode_duration: 50
 episode_title: Shopify Distinguished Eng (L10) on Principal+ Engineering, Career Story, Regrets | Ilya Grigorik

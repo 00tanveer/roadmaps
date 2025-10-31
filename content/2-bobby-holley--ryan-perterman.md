@@ -3,7 +3,7 @@ guest_name: Bobby Holley
 biggest_role: CTO at Mozilla Firefox
 current_company: Mozilla Firefox 
 company_size: 1300
-YOE-starting: 2007
+yoe-starting: 2007
 episode_date: 10/10/2025
 episode_duration: 95
 episode_title: "Mozilla Firefox CTO on Browser War Stories and the Path to Distinguished Engineer"

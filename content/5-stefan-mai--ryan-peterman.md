@@ -3,7 +3,7 @@ guest_name: Stefan Mai
 biggest_role: Senior Engineering Manager at Meta
 current_company: Hello Interview
 company_size: 10s
-YOE-starting: 2002
+yoe-starting: 2002
 episode_date: 15/08/2025
 episode_duration: 91
 episode_title: Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)

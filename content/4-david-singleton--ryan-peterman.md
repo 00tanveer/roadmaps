@@ -3,7 +3,7 @@ guest_name: David Singleton
 biggest_role: CTO at Stripe
 current_company: /dev/agents
 company_size: 10s
-YOE-starting: 2002
+yoe-starting: 2002
 episode_date: ""
 episode_duration: ""
 episode_title: "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)"

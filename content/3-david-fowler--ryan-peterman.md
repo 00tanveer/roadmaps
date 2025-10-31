@@ -3,7 +3,7 @@ guest_name: David Fowler
 biggest_role: Distinguished Engineer at Microsoft
 current_company: Microsoft
 company_size: 130000
-YOE-starting: 2006
+yoe-starting: 2006
 episode_date: 05/09/2025
 episode_duration: 92
 episode_title: "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)"
