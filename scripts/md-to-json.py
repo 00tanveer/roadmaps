@@ -2,7 +2,6 @@ import re
 import yaml
 import os
 import json
-path = 'content/1-ilya-grigorik--ryan-peterman.md'
 
 # print(text[:5])
 def parse_frontmatter(f):
@@ -73,6 +72,27 @@ def build_blocks(lines):
                 "timestamp": timestamp,
                 "text": text_line
             })
+
+        # --- Detect "Name 00:02:40:" pattern
+        inline_match = re.match(r'^([A-Z][A-Za-z0-9._\- ]+)\s+(\d{2}:\d{2}(?::\d{2})?):$', line)
+        if inline_match:
+            print('fucckkk', line)
+            current_speaker = inline_match.group(1).strip()
+            timestamp = inline_match.group(2)
+            blocks.append({
+                "topic": current_topic,
+                "speaker": current_speaker,
+                "timestamp": timestamp,
+                "text": ""
+            })
+            continue
+        # --- Otherwise, treat as continuation text for previous speaker (no new timestamp)
+        if blocks and current_speaker:
+            # append to the most recent block
+            if blocks[-1]["text"]:
+                blocks[-1]["text"] += " " + line
+            else:
+                blocks[-1]["text"] = line
     return blocks
 
 # for all markdown files in /content extract metadata and transcript
@@ -93,6 +113,7 @@ for filepath in filepaths:
         blocks = build_blocks(transcript)
         document = {} # Create a new document dictionary for each file
         document['guest'] = metadata['guest']['name']
+        print(document['guest'])
         document['blocks'] = blocks
         documents.append(document)
 none_count = 0
@@ -106,10 +127,12 @@ for doc in documents:
 
 print(f"{none_count}/{total_count} topics are None ({none_count/total_count*100:.1f}%)")
 
-for path in filepaths:
-    path = 'content_2/' + path[:-2] + 'json'
+# get file names without extensions from content/
+filepaths = [os.path.basename(f) for f in filepaths]
+for i,path in enumerate(filepaths):
+    path = 'content-json/' + path[:-2] + 'json'
     with open(path, 'w') as f:
-        json.dump(document, f, indent=4)
+        json.dump(documents[i], f, indent=4)
 
 ## Goal - Extract clean blocks from transcript with context
 # {
