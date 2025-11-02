@@ -76,7 +76,6 @@ def build_blocks(lines):
         # --- Detect "Name 00:02:40:" pattern
         inline_match = re.match(r'^([A-Z][A-Za-z0-9._\- ]+)\s+(\d{2}:\d{2}(?::\d{2})?):$', line)
         if inline_match:
-            print('fucckkk', line)
             current_speaker = inline_match.group(1).strip()
             timestamp = inline_match.group(2)
             blocks.append({
