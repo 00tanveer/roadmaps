@@ -16,7 +16,7 @@ topics: ["Starting at Mozilla", "Browser wars history", "Google relationship cha
 ## Bobby Holley went from an intern to the CTO of Mozilla Firefox. I asked him about everything he learned in that process. We cover his full career including some interesting stories on living through the browser wars and advice on career growth to the highest levels.
 
 Transcript
-00:00:57 — Starting at Mozilla
+### Starting at Mozilla
 Ryan:
 
 [00:00:57] Before actually working at Firefox, I saw that you interned at Nvidia. I’m kinda curious, why’d you pick Mozilla over Nvidia?
@@ -45,7 +45,7 @@ Bobby:
 
 [00:04:46] Like having these conversations with like other senior Mozilla engineers, other interns, contributors users who were just having bugs and he was just a machine.
 
-00:04:57 — Browser wars history
+### Browser wars history
 Ryan:
 
 [00:04:57] So, I’m kind of curious at this time, how does this tie into the, the timeline of Google Chrome and, and the browser wars? Was this before Google Chrome?
@@ -86,7 +86,7 @@ Bobby:
 
 [00:10:36] And that referred to this very positive hippie atmosphere of working together on the future of the Open Web and the degree to which Google’s more direct business interest. Owning and controlling the user’s journey on the web was starting to create tension.
 
-00:10:55 — Google relationship changing
+### Google relationship changing
 Ryan:
 
 [00:10:55] You mentioned that at some point you had Google badges and you had free food through Google and you had a good working relationship with them.
@@ -121,7 +121,7 @@ Bobby:
 
 [00:16:01] And anytime we changed anything, we would break an extension. And so that was a very real and significant drag with respect to trying to architecturally modernize the browser.
 
-00:16:11 — Why work for free
+### Why work for free
 Ryan:
 
 [00:16:11] You mentioned prior to Google’s funding, this was a group of, uh, bunch of people that were working for free in many cases. I’m kind of curious ‘cause I haven’t done a lot of open source stuff.
@@ -144,7 +144,7 @@ Bobby:
 
 [00:18:27] And Mozilla had a vision of how it could be different, and it had a means of executing that vision, right? It wasn’t just an advocacy organization arguing that tech companies should do something different. It was actually going out and doing something and succeeding and creating a browser that gave users choice to block popups and control over their experience and the ability to block ads and the ability to have tab browsing and all these things that they weren’t getting before, and creating that reality and making the world better in that way, I think was very inspiring to a lot of people.
 
-00:19:02 — Projects that drove his career
+### Projects that drove his career
 Ryan:
 
 [00:19:02] Yeah, I’m kind of curious, like, you know, once you got there, I want to hear a little bit about the projects that you’re working on and the various stories of things that happened in the early days. Are there any projects that you felt were particularly interesting or contributed to your career?
@@ -261,7 +261,7 @@ Bobby:
 
 [00:33:05] It’s, there’s no management edict that somebody needs to stay up late or work on a weekend to do it. People are just motivated to do it because they.
 
-00:33:12 — No performance reviews
+### No performance reviews
 Ryan:
 
 [00:33:12] You mentioned no performance reviews and this, uh, scrappy bottoms up culture. How does that kind of culture work?
@@ -276,7 +276,7 @@ Bobby:
 
 [00:34:16] I think that that culture was very powerful and there are still elements of that culture that I think are important to preserve today, but there are also ways in which it fell short and needed to change. And one of the things that I have spent a lot of thought on over, you know, recent years is finding myself in a leadership position is how do we preserve those aspects of the technical culture that make it great, while also addressing some of the shortcomings.
 
-00:34:42 — Rust adoption
+### Rust adoption
 Ryan:
 
 [00:34:42] You mentioned a little bit about c plus plus and memory safety issues. That’s a very classic thing, and I know that Rust was developed at Mozilla to tackle those problems in large part. So I’m curious, um, can you tell me a little bit about the adoption of Rust and you know, how it solves the problem?
@@ -343,7 +343,7 @@ Bobby:
 
 [00:43:17] Firefox really got back in the game and was really performance competitive with everything else out there. And that was a really exciting moment for everybody realizing that if we just coordinate and we do all the technical effort and we make the right bets, we can win.
 
-00:43:33 — Career progression
+### Career progression
 Ryan:
 
 [00:43:33] Okay. So you mentioned that this was one of the most proud moments of your career and like a major launch, very exciting project.
@@ -386,7 +386,7 @@ Bobby:
 
 [00:47:52] That was how I thought about it, yes.
 
-00:47:54 — Should you focus on promos
+### Should you focus on promos
 Ryan:
 
 [00:47:54] One thing that I’m curious about, ‘cause in the industry when it comes to career growth, I often hear two methodologies. One is where people, they focus on the promo first and foremost, and as a byproduct you get the promo, they, you know, grow and level our skills and various other things, behaviors. And in the other school of thought, it’s ignore the promos, but focus on the behaviors, focus on the skills.
@@ -461,7 +461,7 @@ Bobby:
 
 [00:57:03] Uh, and I just think zooming out at a level of life, you don’t want the people in leadership to find you to be annoying.
 
-00:57:14 — Distinguished promo rejection
+### Distinguished promo rejection
 Ryan:
 
 [00:57:14] So in your case, you were focusing on impact. You had these role models of these des that you wanted to be like, and I’m kind of curious what eventually did the growth look like and how did your impact grow?
@@ -494,7 +494,7 @@ Bobby:
 
 [01:00:43] Um, but understanding that model of thinking about the world and that model of impact, I think was very profound for me and really oriented how, um, I directed my efforts.
 
-01:00:56 — Examples of distinguished engs
+### Examples of distinguished engs
 Ryan:
 
 [01:00:56] I’d love to hear some examples of what a de level of impact looks like. Can you talk about some of the people who have done really impressive engineering work?
@@ -555,7 +555,7 @@ Bobby:
 
 [01:10:33] And making that better. And so it is a tension that I think does, does exist between, within Mozilla of, you know, how much to focus on one and how much to focus on the other. But I think that Mozilla at its best, you know, we have some necessary business stuff that we have to manage, but the end goal of what Mozilla is about is having this impact that benefits everyone.
 
-01:10:54 — Advice for aspiring distinguished engs
+### Advice for aspiring distinguished engs
 Ryan:
 
 [01:10:54] So then after these examples of, uh, distinguished engineers, I’m curious what advice you would give to someone who wants to become a distinguished engineer.
@@ -586,7 +586,7 @@ Bobby:
 
 [01:13:59] And I think that’s the wrong way to think about it. Like there is some basic baseline that you need to work on in terms of articulation of the ideas, but it is not about using the most flowery words. It is about clarity of thought and clarity of thought. Once you have, it is relatively easy to express in written form if you practice.
 
-01:14:40 — AI browser wars
+### AI browser wars
 Ryan:
 
 [01:14:18] Yeah, I think every single person I’ve ever asked this question to has always said. Be concise. It’s shocking to me how, uh, unanimous that advice is. Okay, so going back to the browser wars, I think we all know how things have played out, and I see that there’s this new era of browser wars that’s things are heating up.
@@ -659,7 +659,7 @@ Bobby:
 
 [01:26:13] And it’s on the order of 30%. So I think it is reasonable to say that having this benchmark has made the web 30% faster. And that is something that benefits everyone and I don’t think it’s something that would’ve happened without Mozilla in the room.
 
-01:26:32 — Biggest technical regret
+### Biggest technical regret
 Ryan:
 
 [01:26:27] Coming to the end of the interview, I just wanna ask you a few questions kind of reflecting over your career.
@@ -682,7 +682,7 @@ Bobby:
 
 [01:29:00] But I think that pushing it on the team when the team wasn’t ready and wasn’t aligned on it, had collateral damage that I regret.
 
-01:29:11 — Book that impacted his career most
+### Book that impacted his career most
 Ryan:
 
 [01:29:11] Is there a top book that made an impact on your career?
@@ -703,7 +703,7 @@ Bobby:
 
 [01:31:37] And a lot of those ideas actually translate very similarly, or, you know, it certainly rhymes with situations. Um, you know, been battles between big tech and how do you manage and motivate teams. And so I would definitely encourage people to take a wide view of the thought that is out there because there are many things that can be learned, uh, from things that are outside of just tech and business.
 
-01:32:09 — Advice for his younger self
+### Advice for his younger self
 Ryan:
 
 [01:32:09] Last question for you is, if you could give yourself some advice when you had just entered the industry, is there anything you’d say, knowing everything you know now

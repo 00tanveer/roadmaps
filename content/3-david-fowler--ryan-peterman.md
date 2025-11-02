@@ -12,7 +12,7 @@ guest_background: "Intern to Distinguished Engineer at Microsoft (11 promotions)
 topics: [Microsofts leveling system, Joining Microsoft, First successful project, Bootstrapping his own project, His principal promotion, His distinguished promotion, Engineers he looks up to, Expanding on his top tweets, Big company tip on reorgs, What keeps him at Microsoft, Microsoft culture after Satya, Career regrets and work life balance, Advice for his younger self]
 ---
 Transcript
-00:00:53 — Microsofts leveling system
+### Microsofts leveling system
 Ryan:
 
 [00:00:53] First thing I wanted to go over is, I think Microsoft's leveling system is a little bit unique compared to the other big tech companies. I see on levels FY that the leveling system goes from 59 to 70. And there's almost two levels per title, two levels per SD one, two levels for SD two, two in senior, and it keeps going on all the way down to distinguished.
@@ -31,7 +31,7 @@ David:
 
 [00:02:57] You wouldn't know from looking at their title. Beyond that is like no one knows, right? It's like levels partner that has three bands and then there's beyond partners, like Technical Fellow and Extension Gender. It's a broad system.
 
-00:03:17 — Joining Microsoft
+### Joining Microsoft
 Ryan:
 
 [00:03:17] So, that's the thing I want to dig into. You went through this entire thing, you started all the way as an intern. You've been there for your entire career and you grew all the way to distinguished. I want to go over that story. Could you tell me the story behind you joining Microsoft?
@@ -110,7 +110,7 @@ David:
 
 [00:10:14] It's changed a lot. Some for the better, some for the worse.
 
-00:10:18 — First successful project
+### First successful project
 Ryan:
 
 [00:10:18] So going back to the story, after you had the internship, you committed for full-time. You had pretty quick career growth on the outset, and I see that there are a few pivotal projects that led to the upward trajectory past senior.
@@ -159,7 +159,7 @@ David:
 
 [00:16:12] It was definitely not a one-off, like, "Oh, you did this one thing this year, you're promoted." It was about showing repeated impact over the last 10 years and whether we want to keep you going forward. So I think it did matter.
 
-00:16:22 — Bootstrapping his own project
+### Bootstrapping his own project
 Ryan:
 
 [00:16:22] You mentioned some other larger projects, so maybe we can talk about some of those. Yeah, there was SignalR.
@@ -322,7 +322,7 @@ David:
 
 [00:36:48] Think about the impact of those things. They help when you see engineers who aren't just your boss telling you to go do something for seemingly bad reasons. Engineers who are credible telling you how they do their jobs. I do a lot of that stuff too. A lot of things are not software engineering, to be frank.
 
-00:37:10 — His distinguished promotion
+### His distinguished promotion
 Ryan:
 
 [00:37:10] When you got the promotion to distinguished engineer, what's the story behind that?
@@ -425,7 +425,7 @@ Ryan:
 
 [00:49:37] Makes sense. It's kind of like a power law type of thing. At the top is where there's the most insane returns. Just take those things and go further on that exponential.
 
-00:49:51 — Engineers he looks up to
+### Engineers he looks up to
 Ryan:
 
 [00:49:50] You mentioned a lot of impressive engineers, and I think as a distinguished engineer you have a unique perspective because you can see what is impressive with a critical eye of a great engineer. What are some examples of other engineers that you look up to and what makes them impressive to you?
@@ -450,7 +450,7 @@ David:
 
 [00:53:28] It took me a while to change my brain to say I can just say no to meetings. Decline, decline, decline, decline, decline code.
 
-00:53:40 — Expanding on his top tweets
+### Expanding on his top tweets
 Ryan:
 
 [00:53:40] So I think the next set of questions I want to ask you, because you have a public presence on Twitter, there are all these top tweets that I think are really interesting short thoughts that I'd be curious to have you expand on.
@@ -541,7 +541,7 @@ David:
 
 [01:05:17] When I asked questions about other people who kind of went up really fast during my period at the time, they would say things like everyone knew it was gonna happen. There are certain people where people kind of know when it happens and you never know if that's the case for you or not, or if people are just like, I don't think that person deserves it.
 
-01:05:20 — Big company tip on reorgs
+### Big company tip on reorgs
 Ryan:
 
 [01:05:20] So you've been working at Microsoft for over 17 years now, and one of the tweets you have is talking about big company tips. It says before you change roles, ask when the last reorg was.
@@ -570,7 +570,7 @@ David:
 
 [01:07:54] Think about the things you hate. What can you not stand about working in the area or environment? If you see that, that'll be the thing that will be hard to get around or work through. Let's say you hated open space and wanted a closed office. If the company was open, don't go to the company that is open space because then you'll be unhappy. There are better examples that are probably more relatable, but that's a simpler way of describing it.
 
-01:08:25 — What keeps him at Microsoft
+### What keeps him at Microsoft
 Ryan:
 
 [01:08:25] You've been at Microsoft for a long time, your entire career, even including your internships.
@@ -657,7 +657,7 @@ David:
 
 [01:17:01] It's kind of fine-tuning, I guess, an internal model in my head. Like, okay, this has the smell of something that can be stressful versus not. There are some things here that I'm seeing that work out well and some things that are not working super well.
 
-01:17:22 — Microsoft culture after Satya
+### Microsoft culture after Satya
 Ryan:
 
 [01:17:16] Coming to the end of this, I kinda wanna ask you some high-level reflections and things.
@@ -700,7 +700,7 @@ David:
 
 [01:22:23] The guns. Yeah. I think that picture is funny, and it's definitely not guns at all. It went from guns to ambivalence, like "don't bother me," to collaboration. I think that progression is probably the biggest change between Balmer and Satya. The joke about the guns to "I don't have a gun at you, but as long as you aren't gonna disturb my situation, we're good to go." You're over there, I'm over here, it's all good to collaboration. We incentivize collaboration. You get rewarded for collaboration. I think that was the biggest shift and change I saw in the culture.
 
-01:23:04 — Career regrets and work life balance
+### Career regrets and work life balance
 Ryan:
 
 [01:23:04] When you look back on your career so far, do you have any major regrets that people can learn from?
@@ -745,7 +745,7 @@ David:
 
 [01:29:17] That pattern of needing to know how something works has served me to this day. I need to understand how the thing I'm doing works. I love what I do, and I think that has helped me do it more and get better at it.
 
-01:29:51 — Advice for his younger self
+### Advice for his younger self
 Ryan:
 
 [01:29:51] And then last question. If you could go back to yourself when you were just graduating college and entering the industry and give yourself some advice, what would you say?

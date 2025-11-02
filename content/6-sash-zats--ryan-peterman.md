@@ -9,23 +9,11 @@ episode_duration: 48
 episode_title: Instagram Staff (IC6) Promo Despite 10 Team Switches in 9 Years (Career Story)
 episode_description: Sash Zats grew to be a Staff Engineer (IC6) at Meta despite switching teams 10 times in 9 years. His career journey was a series of jumps to exciting projects and letting career growth happen as a byproduct. I interviewed him to show you how team switches can play out.
 guest_background: Software engineer at Instagram Sash has been working at Meta for over 8 years focusing on 0 to 1 spaces with focus on innovation at scale.
-topics:  
-[
-    First team: iOS on Newsfeed Delight,
-    What makes a good designer partner?,
-    Joining a hardware team,
-    2 diffs in 6 months,
-    Joining the Instagram blockchain team,
-    Joining Instagram Threads pre-launch,
-    Working with an exceptional engineer (Peter),
-    Working on AI prototyping teams,
-    Reflecting on team switching’s impact on career growth,
-    Why leave Meta,
-    Advice for younger self
+topics:  [First team - iOS on Newsfeed Delight, "What makes a good designer partner?", Joining a hardware team, 2 diffs in 6 months, Joining the Instagram blockchain team, Joining Instagram Threads pre-launch, Working with an exceptional engineer (Peter), Working on AI prototyping teams, Reflecting on team switching’s impact on career growth, Why leave Meta, Advice for younger self
 ]
 ---
 Transcript
-00:49 – First team: iOS on Newsfeed Delight
+### First team: iOS on Newsfeed Delight
 Ryan 00:00:49:
 
 Well, let's start at the beginning of the story. So how did you pick the first team and what was the story behind that?
@@ -74,7 +62,7 @@ They're uncomfortable with poorly defined spaces. You know, sort of ambiguous sp
 
 And sooner rather than later you realize that it's an asset. You know when you can be effective in this environment that's sort of challenging or ambiguous to others, it's an asset that you can use. Then it's a question of yeah, how do you measure this effectiveness?
 
-05:30 – What makes a good designer partner?
+### What makes a good designer partner?
 Ryan 00:05:30:
 
 You had a lot of opportunities to work with different designers. I'm kind of curious from an engineer's perspective, what makes the best designers to work with?
@@ -103,7 +91,7 @@ Right. So if it's hardware, well what is the, I don't know, thermal envelope tha
 
 So real life constraints that will get in the way anyway. But yeah, it definitely helps to start with a pretty, you know, sort of everything is gonna be working the way you want and then sort of inform each other and sort of bounce off each other and this definitely builds a stronger product.
 
-08:30 – Joining a hardware team
+### Joining a hardware team
 Ryan 00:08:30:
 
 So I think that first leg of your career you were working on traditional iOS kinds of things, very design oriented. And I understand that you pivoted at some point more towards a completely different domain. You switch teams multiple times. Even within iOS. But then you switched to an entirely different domain in hardware and prototyping experimental hardware. What was your thinking behind wanting to shift to such a different domain?
@@ -122,7 +110,7 @@ The reason why I didn't commit any of this code is because it's trash code and y
 
 See, and this ended up being a pretty common theme, I think in my career from there on, is yeah, it's sort of what is this upper bound experience unbounded by any sort of constraints. And then yeah, how can we productionalize it?
 
-12:08 – 2 diffs in 6 months
+### 2 diffs in 6 months
 Ryan 00:12:08:
 
 Yeah. I'm curious 'cause you said two diffs in six months, and it sounds like there's a lot of risk and you are doing a lot of things that may not be easy to measure or prove the impact. I think a lot of people would be scared of switching teams, especially to a risky area like that. They worry their PSC (Meta’s performance review system) would look bad or something. What was your performance review like in that?
@@ -151,7 +139,7 @@ So you can have that, it's not a great experience, but you can have it. But some
 
 All this stuff, hardware makes you think in very different terms. And it's pretty chill at the beginning, but then towards the end there is a crunch time when you have to get it done by a certain date, and that's quite different.
 
-15:03 – Joining the Instagram blockchain team
+### Joining the Instagram blockchain team
 Ryan 00:15:03:
 
 So you had the hardware teams, and it sounds like that was a lot of fun. And then eventually you went to a series of teams that I'm really interested in because they were cutting edge prototypes on products that we know that launched. So I want to hear the stories behind that. What made you shift from hardware back into these software teams specifically focused on these rapid prototypes.
@@ -184,7 +172,7 @@ And all sort of they're all different incentives that all those companies have. 
 
 But it's so rare that companies sort of fall apart. Well, I don't know if it's rare, but I feel it's, more often than not, the company companies fall apart, not because of technology. And so there is this whole other aspect of building a product that I think as engineers, we don't often get involved in. But it's still a really fun problem space to think about.
 
-21:37 – Joining Instagram Threads pre-launch
+### Joining Instagram Threads pre-launch
 Ryan 00:21:37:
 
 Okay. So then crypto winter happened. You switched off that team and you started working on a very experimental, interesting project, Instagram Threads. Yeah. Prior to its launch. I'm curious, how did you get recruited to that team? 'cause that's a really, you know, cool, interesting zero to one project.
@@ -215,7 +203,7 @@ Yeah. And so I think it got built in five or six months, if I remember right. Fr
 
 And then, yeah, there would be surges of oh, we need to figure out integrity or privacy or whatever performance. You would just sort of bring some people on board that would help you to figure out some stuff. It was a tremendous effort. I think that became sort of a poster child of a team at Meta to show how little you can, you know, how little you need to ship a great product. Granted, we built it on Instagram, so we had super high level primitives, scalable sort of, you know, battle tested and all that. So, but yeah, it was something that's Meta sort of, I think tried to evangelize later on. So this is how we can build products in this new environment.
 
-28:53 – Working with an exceptional engineer (Peter)
+### Working with an exceptional engineer (Peter)
 Ryan 00:28:53:
 
 You mentioned working with Peter super senior engineer at Instagram. What is the thing that made him so great, when you worked with him?
@@ -264,7 +252,7 @@ When you build something that uses internal technology, you cannot really post o
 
 Yeah. And in the corporate world there is so much alignment and, you know, meetings and all that, that I think it always stands out when you have someone taking, you know, initiative and sort of moving on in the ambiguity.
 
-33:02 – Working on AI prototyping teams
+### Working on AI prototyping teams
 Ryan 00:32:59:
 
 And then after Threads, you mentioned that you worked on a string of AI related prototypes and transitioned away from that and started working on, you know, Meta AI and stuff like that. Is there a favorite prototype or maybe a story in there that you think would be worth talking about?
@@ -297,7 +285,7 @@ Ryan 00:36:47:
 
 Okay. Well, coming to the end, I think there's so many interesting reflections we can have over this career. 'cause I think your career is so unique in that. I remember you had written something or said something you got promoted despite your best efforts not to, and it was clearly not your intent to focus on career growth, more about focusing on the things you're building and other circumstances.
 
-37:15 – Reflecting on team switching’s impact on career growth
+### Reflecting on team switching’s impact on career growth
 Ryan 00:37:15:
 
 So I'm kind of curious, when it comes to career growth, looking back, if I recall correctly, you were hired as an IC4 (Mid-level engineer at Meta), then were eventually promoted to IC6(Staff engineer at Meta). Even though it was not something you really even thought too much about. What are your thoughts on, you know, your career growth and also in switching teams as you go about it?
@@ -366,7 +354,7 @@ Sash 00:44:13:
 
 Yeah, it's wild to me. When people reach out, they used to reach out on work chat and they would be oh, hey, we talked, you know, in 2020. My memory is also horrible. And so I just, I rarely remember things that happened more than a year ago. I always feel terrible, but I also feel so, you know, humbled by oh, come my God, people know this is so cool. It's really fun.
 
-44:35 – Why leave Meta
+### Why leave Meta
 Ryan 00:44:35:
 
 Now you've left Meta. What was the rationale for leaving Meta rather than doing another team switch?
@@ -387,7 +375,7 @@ Sash 00:45:53:
 
 Yeah, that's, that's the way it's, it's a really good framework that someone mentioned before that you need to think really carefully when you answer one way door, when it's a two-way door, or at least it looks one you need to be concerned and sort of careful but also take a risk while you can. Yeah. And I'm sort of still in the place in my life where I'm lucky enough to to be able to take some risks.
 
-46:15 – Advice for younger self
+### Advice for younger self
 Ryan 00:46:15:
 
 And then last thing, is it looking back on your career, and if you were to talk to yourself when you had just entered the industry and you could give yourself some advice, what would that thing be that you tell yourself?

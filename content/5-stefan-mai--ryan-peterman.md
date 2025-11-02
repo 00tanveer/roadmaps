@@ -8,15 +8,11 @@ episode_date: 15/08/2025
 episode_duration: 91
 episode_title: Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)
 episode_description: Stefan Mai was a Senior Manager (M2) with experience across Meta and Amazon. We went over his career story in growing to M2 which is equivalent to Senior Staff (IC7) in big tech. Since he started his own company now, he was happy to be fully transparent about the behind the scenes of managing in big tech. Since he founded the interview prep company, Hello Interview, I also thought it’d be interesting to talk about trends he’s seeing in AI cheating tools and how to get offers at OpenAI/Anthropic. 
-guest_background: [Early career at Amazon, Growth to eng manager at Amazon, Storytelling tips, Why he left Amazon, Transitioning to AI/ML, Senior manager (M2) promo story at Meta, Mutiny and manager politics, Are managers harder to layoff?, Senior manager (M2) skill gaps, Eng vs manager career growth, Amazon vs Meta culture, Amazon vs Meta performance, Low performer quotas, Can you get out of a PIP?, AI interview cheating, Passing OpenAI & Anthropic interviews, Job hopping, When he grew the most, How to write better, Career motivations past M2, Advice for younger self
+guest_background: [Early career at Amazon, Growth to eng manager at Amazon, Storytelling tips, Why he left Amazon, Transitioning to AI/ML, Senior manager (M2) promo story at Meta, Mutiny and manager politics, "Are managers harder to layoff?", Senior manager (M2) skill gaps, Eng vs manager career growth, Amazon vs Meta culture, Amazon vs Meta performance, Low performer quotas, "Can you get out of a PIP?", AI interview cheating, Passing OpenAI & Anthropic interviews, Job hopping, When he grew the most, How to write better, Career motivations past M2, Advice for younger self
 ]
 ---
-
-
-
-
 Transcript
-00:59 – Early career at Amazon
+### Early career at Amazon
 Ryan 00:00:59:
 
 Because you were a senior manager in big tech and I thought it would be really interesting for all the ICs out there to go over all of the PIP stuff that happens, all of the stack ranking behind the scenes, performance management, and of course I was curious about your career. So I guess before we dig into all that, maybe we can start with Amazon. Can you tell me a little bit about what you worked on and how you got to Amazon?
@@ -59,7 +55,7 @@ Stefan 00:05:16:
 
 Yeah, I would say that wasn't completely standard throughout my career. There were certainly times where things settled down. I'd say the average was working hard. I think any big tech job it's going to require quite a lot of effort and even more so if you're ambitious and wanna get things done. So, for me, working 50, 60 hours a week was fairly common, but it wasn't always the case that it was working nights and weekends.
 
-05:46 – Growth to eng manager at Amazon
+### Growth to eng manager at Amazon
 Ryan 00:05:46:
 
 I saw that you grew through the early levels and then you also transitioned to management at Amazon as well. Are there any notable stories from your growth to an SDM (Software Development Manager)?
@@ -110,7 +106,7 @@ The API thing makes me laugh a bunch because, when I was really early in my care
 
 And I always remember, there's often this preamble at the beginning of a one-on-one where you say, Hey, you know, how's your weekend? Or, you know, what are you doing tonight or later? Or something, and I always thought that was a waste of time. But now as a manager and just as a more normal person, I see the value in it for sure.
 
-11:31 – Storytelling tips
+### Storytelling tips
 Ryan 00:11:31:
 
 You mentioned storytelling. For managers there's a lot of value in that. And I think also for ICs too, people talk about the storytelling behind talking about your work or maybe getting people interested in getting buy-in behind things. Do you have any tips on how to improve your storytelling?
@@ -155,7 +151,7 @@ Stefan 00:16:15:
 
 Yeah, we had a lot of people who were pretty upset about the situation. I wouldn't say things were particularly good.
 
-16:28 – Why he left Amazon
+### Why he left Amazon
 Ryan 00:16:28:
 
 Coming to the end of the Amazon leg, what was the thing that made you leave and want to join Meta?
@@ -202,7 +198,7 @@ Ryan 00:22:50:
 
 Yeah. And at that stage of its growth, I mean, it's a more later stage company, so it kind of makes sense that it's on the later end of that life cycle.
 
-22:59 – Transitioning to AI/ML
+### Transitioning to AI/ML
 Ryan 00:22:59:
 
 You mentioned that at some point you transitioned to working on ML work and forecasting at Amazon, and I know you continue to work and Integrity is a very machine learning focused space. How was that transition for you? Was that challenging?
@@ -240,7 +236,7 @@ We didn't completely understand what was going on there. You talk about ranking 
 
 The item arrives at your front doorstep, but there is just so much complexity. I think it's quite beautiful, behind those systems. And that's true of general software systems, but maybe not in the same way I found ML Systems to be particularly attractive.
 
-27:01 – Senior manager (M2) promo story at Meta
+### Senior manager (M2) promo story at Meta
 Ryan 00:27:01:
 
 I guess, you know, going back to your time at Meta, I saw that you got promoted from a frontline manager to a senior manager, and I think a lot of people struggle with that growth. So I'm curious, you know, what did that look like for you? What was the story behind that promotion to M2?
@@ -271,7 +267,7 @@ In other cases, you know, that person will get displaced in part because the peo
 
 You know, that went on for some time, that the transition didn't happen until I had an org of about 30 to 40 people. In other companies, I guess you'll typically see a promotion before then, but by that point, you know, I was basically sitting in calibrations alongside a bunch of other M2s and, you know, at a certain point, it was kind of hard to deny that, you know, this person's doing the job. So, that was my promotion story.
 
-31:30 – Mutiny and manager politics
+### Mutiny and manager politics
 Ryan 00:31:28:
 
 The mutiny you mentioned is really interesting. How does that surface in practice? How, you know, how could someone underneath you kind of usurp you or kind of that mutiny could come in?
@@ -344,7 +340,7 @@ Less and less, it becomes more and more binary action. We're obviously gonna hav
 
 And of course, that doesn't apply necessarily at a senior manager level, but the same sort of trend does apply up and down the org chart, you've got less and less levers that you can pull to kind of turn things around.
 
-40:34 – Are managers harder to layoff?
+### Are managers harder to layoff?
 Ryan 00:40:34:
 
 You mentioned manager under performance. I'm curious because there were a lot of layoffs in the past. Do you feel managers have, they're harder to lay off than ICs are? And if so, why?
@@ -407,7 +403,7 @@ That look, OpenAI has a ton of politics inside the company. It is not immune to 
 
 So lots of different dimensions are at play. I don't think you can generalize across these to any degree, but you can kind of notice some trends and, and in general, there is maybe an entropy as orgs get bigger, you have to have people who know how to navigate it. It's just, it's not something that you can avoid.
 
-49:50 – Senior manager (M2) skill gaps
+### Senior manager (M2) skill gaps
 Ryan 00:49:49:
 
 When I asked you about the promotion to senior manager, you mentioned the size of your org and that managers were reporting to you. So it sounds like that was a big part of the promotion to have the scope to be a senior manager. I'm curious about the skill difference between an M1 and an M2 in your opinion.
@@ -434,7 +430,7 @@ And so, you know, my leadership chain, when I was doing the M1 to M2 transition 
 
 That sort of thing. A bunch of small behavioral things would be the first thing that they would screw up. You know, longer term, you know, there's strategy and org design and a bunch of mistakes that you can make there, but those small things, especially in the first few weeks, are enough to sink you. It's kind of a scary environment to operate in, to be honest.
 
-53:21 – Eng vs manager career growth
+### Eng vs manager career growth
 Ryan 00:53:21:
 
 You've experienced IC career growth and manager career growth. I'm curious to compare and contrast, you know, IC versus management, I guess growth paths. What do you think of the differences between the two? And also I'm curious, do you find that they're both meritocratic? I often hear that there's some, you know, cynical takes on some, you know, one being less meritocratic than the other. So, curious about your thoughts.
@@ -455,7 +451,7 @@ Ryan 00:55:59:
 
 I see. So the early promotions are the most easy to verify and be fair, and the higher level ones are a little bit more, I mean, I'm sure there are fair ones as well, but you're just saying it's a lot easier for there to be optics coming into play, narratives and stories that are kind of hard to tell what exactly is going on and who deserves what is that right?
 
-56:27 – Amazon vs Meta culture
+### Amazon vs Meta culture
 Ryan 00:56:27:
 
 I think one thing I was curious to dig into is that, you know, knowing that you've been at Meta and you've been at Amazon and you, you had a fair amount of time at both, I thought it'd be interesting to kinda ask you the pros and cons of each, or at least your personal experience.
@@ -482,7 +478,7 @@ Data is the lifeblood of ML and AI applications, and in a lot of cases that aren
 
 So there are two companies that I think have very different approaches. I tend to prefer Meta's approach, especially as it pertains to leadership. But Amazon had some things that I definitely missed as I made that transition, and there's clearly reasons why it worked. There are some individuals where I talk with them for five or ten minutes and I go, I think Amazon's a better fit for you. You know, accepting all the other externalities of an actual position. I think you're gonna like it more than you might the chaos that's usually a Meta execution.
 
-01:00:34 – Amazon vs Meta performance
+### Amazon vs Meta performance
 Ryan 01:00:34:
 
 Having been a manager at each company, you experience the performance system intimately. What about comparing and contrasting the performance systems at Meta and Amazon?
@@ -523,7 +519,7 @@ That was a criteria. I remember at Amazon they talked about kind of, I think the
 
 In some sense, getting into those positions can be very lucrative just because. They're going to, in some sense, try to put those golden handcuffs on you as tightly as they can. If the org depends on it, the companies generally speaking, know how to avoid completely embarrassing themselves with attrition, and sometimes the lever that they pull is just financial. But yeah, most of the time they hope that it's more than that.
 
-01:05:24 – Low performer quotas
+### Low performer quotas
 Ryan 01:05:24:
 
 You know, with some of the layoffs that kind of happened in the past, there's mentions of lower low performer quotas, and I'm kind of curious, is that something that you experienced when you were working at these companies and how do they work?
@@ -550,7 +546,7 @@ That wasn't even acceptable. Perfect. And so those sort of egg on the face momen
 
 That way they're not surprised. You're not surprised. The kind of structure works fairly, but if you've got a lot of immature managers are just relatively new or maybe they just don't see it clearly, then you end up with lots of situations what I just described, where people have to go mea culpa with their reports and honestly for everyone involved, most of which the actual person who's receiving that news, it can be devastating. So it's pretty bad.
 
-01:08:55 – Can you get out of a PIP?
+### Can you get out of a PIP?
 Ryan 01:08:55:
 
 You mentioned PIPs. I'm curious, do you think that they work and you know, are there any differences between PIPs across the companies? This is based off that Reddit thread. I think someone asked, are they just a formality to create a paper trail? Or can people actually get out of a PIP?
@@ -577,7 +573,7 @@ You conducted over 500 interviews across your time in Big Tech and you also have
 
 So every time I'm interviewing you or Evan, he says, oh, it's those guys that love their product. But I wanted to ask you about interviewing, 'cause I felt you might have something interesting to say.
 
-01:12:23 – AI interview cheating
+### AI interview cheating
 Ryan 01:12:23:
 
 With the rise of these AI cheating tools and, you know, LLM assistance. I'm curious, you know, how much do you see that coming up when you're either helping people prepare, or maybe you're just in the space, thinking about interview prep?
@@ -612,7 +608,7 @@ So definitely seeing that shift. I wouldn't say I've noticed any really acute de
 
 It's very painful, but broken is probably a step too far, in part because it's serving companies' needs up until this point. And so I think it's a bit premature to assume that, you know, that's not going to be a part of the interviewing process, at least in the short to midterm.
 
-01:16:42 – Passing OpenAI & Anthropic interviews
+### Passing OpenAI & Anthropic interviews
 Ryan 01:16:42:
 
 If someone was hell bent on passing OpenAI or Anthropic interviews. What's the optimal game plan from your experience at Hello Interview?
@@ -627,7 +623,7 @@ Here's the vibe that I got from you. can be really helpful in refining your pres
 
 I think for a lot of people, the crowning achievement of their, you know, staff engineer career at, you know, big tech is they wrote seven docs and then got six different teams to align and then finally wrote five lines of code in addition to a hundred thousand that were written by junior engineers. And that was hard. I know that that worked deeply, but these companies don't look at it the same way and you have to recognize that in order to really nail it.
 
-01:18:33 – Job hopping
+### Job hopping
 Ryan 01:18:33:
 
 Coming to the end of the interview, I wanted to ask you some career reflections things. Just looking back on everything so far, kind of reflect on some of the things that you've learned. I saw that, you know, in your resume you worked in both of your stints in big tech, you stayed in the roles for quite some time, maybe around four years or longer. And so I'm curious about your thoughts on job hopping quickly, because that is advice that a lot of people give. What are your thoughts on job hop?
@@ -662,7 +658,7 @@ There are certainly some very senior engineers who become known for that system 
 
 It's great to feel your work is rewarding, but if you don't feel you're being challenged, even if you're really senior, it may be that it's time to move. And part of it might be that you just got stuck in a hole. Otherwise that snowball is gonna work in your favor.
 
-01:22:37 – When he grew the most
+### When he grew the most
 Ryan 01:22:37:
 
 When you think back to your career and when you felt the most growth on average, looking across everything. When would you say is the time that you grew most and why?
@@ -679,7 +675,7 @@ It's interesting looking back longitudinally, I feel a lot of my effectiveness, 
 
 People just nitpicking the most stupid stuff. But it is a company that really does encourage good writing, which means good thinking at some level. And that has stuck with me. It wouldn't be a moment that I would notice, but that continued practice was really beneficial for me throughout my career. So those are some of the things that really stand out.
 
-01:24:22 – How to write better
+### How to write better
 Ryan 01:24:22:
 
 On the topic of writing. 'cause I know it's really important. I'm just curious, what would be your top tip? If there's some, you know, I see or em you're saying, Hey, you need to improve your writing. What would be the thing?
@@ -704,7 +700,7 @@ Stefan 01:26:15:
 
 And then practice, practice, practice, practice.
 
-01:26:22 – Career motivations past M2
+### Career motivations past M2
 Ryan 01:26:22:
 
 I mean, at this point you've, you had a lot of success at Meta. Most people never grow to the level that you grew to. What motivates you in your career now too? 'cause you also left to go to a startup.What is your motivation?
@@ -719,7 +715,7 @@ What's keeping me? And for me, for the longest time, it was, I wanna start a bus
 
 You're putting this off. And so that was what was the impetus for me and leaving big tech and building a business, but also as kind of the animating force for me going forward. It's just kind of looking at that next piece, you know, what is it that I'm really after here.
 
-01:28:11 – Advice for younger self
+### Advice for younger self
 Ryan 01:28:11:
 
 And then, last question. If you could go back to yourself when you had just graduated college and give yourself some advice, what would you say?

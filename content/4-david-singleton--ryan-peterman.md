@@ -4,18 +4,15 @@ biggest_role: CTO at Stripe
 current_company: /dev/agents
 company_size: 10s
 yoe-starting: 2002
-episode_date: ""
-episode_duration: ""
-episode_title: "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)"
-episode_description: "David Fowler went from an intern to a Distinguished Engineer at Microsoft. That’s 11 different promotions all at the same company. I asked him about everything he learned by going through that process. We covered projects that had a significant impact on his career and his promotions. Also, since he’s been at the company for over 17 years he also shared big company tips he has and perspective on how Microsoft’s culture changed after Satya became CEO."
-guest_background: "Intern to Distinguished Engineer at Microsoft (11 promotions)"
-[Before Google, Joining Google, Deciding to try management, How to decide on EM vs IC, Biggest gap in managing managers, The difference between VP and Senior EM, How to communicate well, How managers can scale themselves, How to build a new engineering site, What kept him at Google, The story behind joining Stripe, Comparing and constrasting cultures, How to set culture, Is Stripe too reliable?, Hiring at scale without Leetcode, Lessons learned working with Stripe’s leadership, Why leave Stripe, How his AI startup plans to compete, Career reflections: regrets, what went well, Top book & habit that impacted his career, Advice for younger self]
-
-# Stripe CTO on What Grew His Career, Hiring Without Leetcode, Coding as a Leader (Career Story)
-## David Singleton was the CTO at Stripe for 7 years before he left to start /dev/agents. Prior to Stripe, he grew from a junior engineer to a VP at Google. I recently asked him about everything he knows about career growth and being an excellent engineering leader. We discussed how Stripe hired at scale without Leetcode, why he thinks all engineering leaders should write code, the book that impacted his career most and many more topics.
-
+episode_date: 29/08/2025
+episode_duration: 126
+episode_title: Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)
+episode_description: David Singleton was the CTO at Stripe for 7 years before he left to start /dev/agents. Prior to Stripe, he grew from a junior engineer to a VP at Google. I recently asked him about everything he knows about career growth and being an excellent engineering leader. We discussed how Stripe hired at scale without Leetcode, why he thinks all engineering leaders should write code, the book that impacted his career most and many more topics.
+guest_background: Intern to Distinguished Engineer at Microsoft (11 promotions)
+topics: [Before Google, Joining Google, Deciding to try management, How to decide on EM vs IC, Biggest gap in managing managers, The difference between VP and Senior EM, How to communicate well, How managers can scale themselves, How to build a new engineering site, What kept him at Google, The story behind joining Stripe, Comparing and constrasting cultures, How to set culture, "Is Stripe too reliable?", Hiring at scale without Leetcode, Lessons learned working with Stripe’s leadership, Why leave Stripe, How his AI startup plans to compete, Career reflections - regrets - what went well, Top book & habit that impacted his career, Advice for younger self]
+---
 Transcript
-00:00:56 — Before Google
+### Before Google
 Ryan:
 
 [00:00:56] The first thing I wanted to ask you is how did you get into programming to begin with?
@@ -56,7 +53,7 @@ David:
 
 So, yeah, I guess it was. We didn't call it that back then, and I hadn't even made the connection until now. But yeah, it's a pretty interesting model. For what it's worth, I was pretty young at that time. I really enjoyed it. I got to travel all over the world, and it was a very rewarding period of my career, even though I probably wouldn't want to do that right now.
 
-00:06:49 — Joining Google
+### Joining Google
 Ryan:
 
 [00:06:49] So you talked about the future companies. I know we're talking about Google and Stripe. I'd love to hear the story about how you got into working at Google.
@@ -121,7 +118,7 @@ David:
 
 [00:13:21] I've been lucky to experience that as an engineer and then later try to use that kind of tool as a manager and leader.
 
-00:13:27 — Deciding to try management
+### Deciding to try management
 Ryan:
 
 [00:13:27] So you talked about management, and I understand that you grew from an IC to a manager quite quickly. When people think about the management versus senior engineer fork in the road, it's not a clear-cut decision for everyone.
@@ -228,7 +225,7 @@ David:
 
 [00:25:13] If I have spare time and I haven't programmed for a while, then yeah, I'm going to jump in. For instance, the last several years I've been doing Advent of Code in December. It's awesome. I get a chance to make sure that I'm keeping some of those skills sharp.
 
-00:25:28 — How to decide on EM vs IC
+### How to decide on EM vs IC
 Ryan:
 
 [00:25:28] Before we leave the IC versus EM decision, a lot of people in the audience are probably making this decision for themselves or kind of near it. How do you think about what's the optimal way to make that decision?
@@ -275,7 +272,7 @@ David:
 
 [00:30:14] That's okay because the carrot for them is the thing that they want to chase. I think it's just make sure you're chasing the right carrot.
 
-00:30:36 — Biggest gap in managing managers
+### Biggest gap in managing managers
 Ryan:
 
 [00:30:22] At Google, I understand that you went from an entry-level IC all the way to VP of engineering, and you must have a very unique perspective because almost no one gets promoted to levels of that height.
@@ -324,7 +321,7 @@ David:
 
 [00:36:01] It's a great analogy. There should be some balance.
 
-00:36:14 — The difference between VP and Senior EM
+### The difference between VP and Senior EM
 Ryan:
 
 [00:36:02] You know, we talked about frontline manager versus manager of managers. Now I'm curious about the step that very few people ever experience, which is you went through senior management all the way to VP.
@@ -361,7 +358,7 @@ David:
 
 [00:39:34] But it's a useful tool.
 
-00:39:36 — How to communicate well
+### How to communicate well
 Ryan:
 
 [00:39:36] In a previous interview, you had mentioned that communication is incredibly important for senior engineering leaders. What are your thoughts on how to get better at communication?
@@ -442,7 +439,7 @@ David:
 
 [00:48:29] To be clear, you don't need to do this for every email. That would be a waste of time. But for something that you think is an important piece of information, it's incredibly useful to run it by some people.
 
-00:48:42 — How managers can scale themselves
+### How managers can scale themselves
 Ryan:
 
 [00:48:42] Before we leave, just general management practices, we talked a little bit about scaling yourself and you said it was especially important as a senior manager and hire. What are those high leverage ways to scale yourself, aside from coaching your direct reports?
@@ -507,7 +504,7 @@ David:
 
 [00:53:51] But do that. If you tell them, "Here's the problem we're trying to solve and I think that we should probably do this, you go do it and please take agency in making sure that we're really solving the real problem," you have completely different outcomes.
 
-00:54:08 — How to build a new engineering site
+### How to build a new engineering site
 Ryan:
 
 [00:54:03] One topic that I want to touch on, and this is something that Philip mentioned.
@@ -574,7 +571,7 @@ All of these things are worth doing to make remote teams effective, and for cert
 
 [01:04:12] As the company grows, I'm sure we will revisit that because there are amazing people who won't be able to come and join us to work together in San Francisco. I think it's a balance. It is very hard to build a huge company today without deciding to lean into how to make sure that distributed, which is different offices around the world, and remote, which is folks that are not necessarily able to get in the same room together, work well. It's something that in our industry we all have to get used to and lean into.
 
-01:04:47 — What kept him at Google
+### What kept him at Google
 Ryan:
 
 [01:04:47] Coming to the end of your time at Google, I saw that after you were promoted to a VP, you remained in that role for two years and five months. My question to you is what was keeping you in that role for that long?
@@ -607,7 +604,7 @@ David:
 
 [01:07:17] Well, we found that we had a lot of mutual respect for each other. Those were some of the best relationships to form in business. I feel very privileged to have been able to bond with someone that I was sometimes on the other side of the table from.
 
-01:07:34 — The story behind joining Stripe
+### The story behind joining Stripe
 Ryan:
 
 [01:07:34] You mentioned wanting to start a venture after Google, and I saw in the post that you wrote about leaving Stripe that a company was the thing you were considering doing before you got into Stripe. That's right. I'm curious, what was the company idea? What's the story there?
@@ -694,7 +691,7 @@ David:
 
 [01:16:51] At Google at that time, it was directors.
 
-01:16:53 — Comparing and constrasting cultures
+### Comparing and constrasting cultures
 Ryan:
 
 [01:16:53] You mentioned org design, and as a CTO, I imagine that was something you thought about a lot. I see all these famous engineering cultures; Facebook has its own thing with "move fast and break things" and all of these principles. Similarly, Google has its own principles.
@@ -755,7 +752,7 @@ David:
 
 [01:23:59] Yeah, that's a good question. I'm building a very early stage company right now. I think it matters to care about culture from day one. So my co-founders and I, literally the day that we incorporated the company, went out for a drink and spent some time writing down what we think our values are as we build this company. That's been useful. We've certainly been paying attention to that as we think about the people we're hiring and the ways that we're running things. It's also the case that running an early stage company is an exercise in being smacked in the face quite often. The world will surprise you. It's important to have values that help you know where you might want to compromise and where not. Now at the same time, I think it would be way too early for us right now to kind of spin up a, you know, every week we're going to think about what we can do that contributes to the company culture. It needs to be more organic at this stage. But I do think it's something that, obviously I've worked in much later stage companies as well. I think it's something that you have to be very intentional about all the way through because fundamentally companies are just large groups of people. Nonetheless, you do something to bring large groups of people together and give them a shared sense of purpose and alignment. Naturally, entropy will just take over. If you don't invest in culture, you almost by definition will not have a culture. Of course, there are all these quotes like culture eats execution for breakfast, something like that. I think it's true if you find yourself in an organization that is very intentional about how it works. You just mentioned Stripe, Amazon, they tend to be very effective. Some of the companies I worked at very early in my career were not intentional about this and have not lasted. So I think it matters.
 
-01:25:55 — How to set culture
+### How to set culture
 Ryan:
 
 [01:25:55] How do you concretely, as an engineering leader, enforce culture?
@@ -804,7 +801,7 @@ David:
 
 [01:34:43] Because we started measuring everything in a systematic way and bubbling it up to a lot of people across the org, we were able to start making a lot of progress on not just reliability, but also efficiency and performance. It was a really special time.
 
-01:34:59 — Is Stripe too reliable?
+### Is Stripe too reliable?
 Ryan:
 
 [01:34:59] Reliability is not free. It comes with a cost in terms of additional machines for redundancy, but also there's a lot of overhead and probably slowing things down. Let's do more diff reviews. Let's have incident reviews. Let's really make sure that if it's touching a risky code path, we go a little slower.
@@ -845,7 +842,7 @@ David:
 
 [01:39:35] So I recommend that book.
 
-01:39:36 — Hiring at scale without Leetcode
+### Hiring at scale without Leetcode
 Ryan:
 
 [01:39:36] One of the last things on Stripe is Stripe was very well known for the engineering talent, and I'm curious, what are the material actions that the company would take to hire such strong engineers?
@@ -896,7 +893,7 @@ David:
 
 [01:43:54] And then is it sufficient? No. It also has to be clear that you can learn a lot, advance your own career goals, and be surrounded by people that you want to spend those precious hours of your life with. So I think it's neither necessary nor sufficient, but it certainly goes a long way.
 
-01:44:15 — Lessons learned working with Stripe’s leadership
+### Lessons learned working with Stripe’s leadership
 Ryan:
 
 [01:44:15] As the CTO of Stripe, you had proximity to Stripe's leadership team. I'd love to hear what are the things that you learned from such talented people?
@@ -921,7 +918,7 @@ David:
 
 But you're right. It's not a tool to be used in every single thing every day. Otherwise everything would grind to a halt.
 
-01:46:45 — Why leave Stripe
+### Why leave Stripe
 Ryan:
 
 [01:46:45] Coming away from Stripe, I saw you recently left to start your current company, which is Dev Agents.
@@ -960,7 +957,7 @@ David:
 
 As part of that, we need to build all of the right tools and experience for those developers and crafters to build really powerful and valuable agents. We have to make them really accessible for people. That's right.
 
-01:51:26 — How his AI startup plans to compete
+### How his AI startup plans to compete
 Ryan:
 
 [01:51:26] The AI industry right now is like a war zone. There's so much interest, and because there's so much interest, there are so many people competing. I'm curious, how do you see yourself outcompeting big names like OpenAI who probably have interest in this exact thing?
@@ -997,7 +994,7 @@ David:
 
 [01:55:07] You obviously mentioned how competitive the AI industry is right now. That is true. I wouldn't want to work on anything else. I really strongly believe that this is a profound leap forward in technology, and as a technologist, I couldn't imagine not working on it. It certainly is hard work, which is very rewarding, but I think we're creating a lot of type two fun right now.
 
-01:55:31 — Career reflections: regrets, what went well
+### Career reflections: regrets, what went well
 Ryan:
 
 [01:55:31] Coming to the end of the interview, I want to do some career reflections. Going over everything that you've done so far, if you were to look back on your career with this retrospective lens, what would you say went well? What do you think didn't go well?
@@ -1052,7 +1049,7 @@ David:
 
 [02:00:52] By the way, it's amazing the kind of family tree of all the practices in our industry. I'm pretty certain Bell Labs was the progenitor, but it definitely was the way Google worked when I joined Google, which was 2005, 2006.
 
-02:01:05 — Top book & habit that impacted his career
+### Top book & habit that impacted his career
 Ryan:
 
 [02:01:05] Is there a top recommendation for a book that really impacted your career?
@@ -1089,7 +1086,7 @@ David:
 
 [02:04:41] It makes endorphins, it makes you feel good. If you're ever in a funk at work, just make sure that you're working hard a few times a week. It's amazing how often that was the thing I just had to do to keep myself on an even keel.
 
-02:04:55 — Advice for younger self
+### Advice for younger self
 Ryan:
 
 [02:04:55] And the last question that I wanted to ask you is, if you could go back to yourself when you just graduated from college and you were about to enter the industry and you could give yourself some advice, what would you say?

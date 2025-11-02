@@ -1,11 +1,14 @@
 import re
 import yaml
+import os
+import json
 path = 'content/1-ilya-grigorik--ryan-peterman.md'
 
 # print(text[:5])
 def parse_frontmatter(f):
     lines = f.readlines()
     idx = [i for i,l in enumerate(lines) if l == '---\n']
+    print(idx)
     frontmatter = lines[idx[0]+1:idx[1]]
     frontmatter = [l.strip() for l in frontmatter]
     frontmatter = '\n'.join(frontmatter)
@@ -71,12 +74,42 @@ def build_blocks(lines):
                 "text": text_line
             })
     return blocks
-with open(path, 'r') as f:
-    frontmatter = parse_frontmatter(f)
-    metadata = build_metadata(frontmatter)
-    f.seek(0)
-    transcript = parse_transcript(f)
-    blocks = build_blocks(transcript)
+
+# for all markdown files in /content extract metadata and transcript
+# blocks for each document, and store them in json
+folder_path = "content/"
+filepaths = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+documents = []
+for filepath in filepaths:
+    print(filepath)
+    with open(filepath, 'r') as f:
+        frontmatter = parse_frontmatter(f)
+        if frontmatter is None: # Skip file if frontmatter is not found or has parsing errors
+            print(f"Skipping file {filepath} due to missing or invalid frontmatter.")
+            continue
+        metadata = build_metadata(frontmatter)
+        f.seek(0) # Reset file pointer after reading frontmatter
+        transcript = parse_transcript(f)
+        blocks = build_blocks(transcript)
+        document = {} # Create a new document dictionary for each file
+        document['guest'] = metadata['guest']['name']
+        document['blocks'] = blocks
+        documents.append(document)
+none_count = 0
+total_count = 0
+
+for doc in documents:
+    for block in doc['blocks']:
+        total_count += 1
+        if block['topic'] is None or block['topic'] == 'None':
+            none_count += 1
+
+print(f"{none_count}/{total_count} topics are None ({none_count/total_count*100:.1f}%)")
+
+for path in filepaths:
+    path = 'content_2/' + path[:-2] + 'json'
+    with open(path, 'w') as f:
+        json.dump(document, f, indent=4)
 
 ## Goal - Extract clean blocks from transcript with context
 # {
