@@ -1,5 +1,6 @@
 ---
 guest_name: David Singleton
+host_name: Ryan Peterman
 biggest_role: CTO at Stripe
 current_company: /dev/agents
 company_size: 10s

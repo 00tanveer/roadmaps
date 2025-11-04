@@ -1,5 +1,6 @@
 ---
 guest_name: Ilya Grigorik
+host_name: Ryan Peterman
 biggest_role: Distinguished Engineer at Shopify
 current_company: Shopify 
 company_size: 8000
