@@ -1,0 +1,11 @@
+Q: How did it all begin?
+1. Well, let's start at the beginning of the story. So how did you pick the first team and what was the story behind that? (similarity: 0.664)
+2. The first thing I wanted to ask you is how did you get into programming to begin with? (similarity: 0.608)
+3. So, that's the thing I want to dig into. You went through this entire thing, you started all the way as an intern. You've been there for your entire career and you grew all the way to distinguished. I want to go over that story. Could you tell me the story behind you joining Microsoft? (similarity: 0.584)
+4. After you went through all of those iterations and all the co-op loops, understand that you started your own company, um, which became post rank. Was then acquired by Google. And I’m curious the story behind you choosing to found a company Right after graduating from Waterloo. (similarity: 0.559)
+5. In the post, it almost sounds like you went to them for advice on starting the company. That is correct. How did you realize the conversation was turning towards them recruiting you? (similarity: 0.555)
+6. Yeah, I’m kind of curious, like, you know, once you got there, I want to hear a little bit about the projects that you’re working on and the various stories of things that happened in the early days. Are there any projects that you felt were particularly interesting or contributed to your career? (similarity: 0.553)
+7. The mutiny you mentioned is really interesting. How does that surface in practice? How, you know, how could someone underneath you kind of usurp you or kind of that mutiny could come in? (similarity: 0.540)
+8. You went towards the advertising space. Was that something that you picked or was there was a general pipeline and you were placed somewhere? (similarity: 0.538)
+9. So, I’m kind of curious at this time, how does this tie into the, the timeline of Google Chrome and, and the browser wars? Was this before Google Chrome? (similarity: 0.513)
+10. After you graduated from college, I understand that the first role you had was at Symbian. Can you tell me the story about working at Symbian? (similarity: 0.510)
