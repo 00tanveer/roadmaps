@@ -1,5 +1,34 @@
 {
-    "guest": "David Fowler",
+    "guest": {
+        "name": "David Fowler",
+        "title": "Distinguished Engineer at Microsoft",
+        "company": "Microsoft",
+        "company_size": 130000,
+        "YOE_starting": null,
+        "background": "Intern to Distinguished Engineer at Microsoft (11 promotions)"
+    },
+    "episode": {
+        "title": "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)",
+        "host": "Ryan Peterman",
+        "description": "David Fowler went from an intern to a Distinguished Engineer at Microsoft. That\u2019s 11 different promotions all at the same company. I asked him about everything he learned by going through that process. We covered projects that had a significant impact on his career and his promotions. Also, since he\u2019s been at the company for over 17 years he also shared big company tips he has and perspective on how Microsoft\u2019s culture changed after Satya became CEO.",
+        "date": "05/09/2025",
+        "duration_minutes": 92,
+        "topics": [
+            "Microsofts leveling system",
+            "Joining Microsoft",
+            "First successful project",
+            "Bootstrapping his own project",
+            "His principal promotion",
+            "His distinguished promotion",
+            "Engineers he looks up to",
+            "Expanding on his top tweets",
+            "Big company tip on reorgs",
+            "What keeps him at Microsoft",
+            "Microsoft culture after Satya",
+            "Career regrets and work life balance",
+            "Advice for his younger self"
+        ]
+    },
     "blocks": [
         {
             "topic": "Microsofts leveling system",

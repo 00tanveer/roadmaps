@@ -1,5 +1,30 @@
 {
-    "guest": "Ilya Grigorik",
+    "guest": {
+        "name": "Ilya Grigorik",
+        "title": "Distinguished Engineer at Shopify",
+        "company": "Shopify",
+        "company_size": 8000,
+        "YOE_starting": null,
+        "background": "Founded PostRank (acquired by Google), Waterloo CS grad"
+    },
+    "episode": {
+        "title": "Shopify Distinguished Eng (L10) on Principal+ Engineering, Career Story, Regrets | Ilya Grigorik",
+        "host": "Ryan Peterman",
+        "description": "Ilya Grigorik grew to a Distinguished Engineer (VP-level role) at Shopify and I asked him what it took to get there. We covered his full career including the behind the scenes of his startup getting acquired by Google, his growth to Director at Google, and what it means to operate like a Distinguished engineer.",
+        "date": "24/10/2025",
+        "duration_minutes": 50,
+        "topics": [
+            "Thoughts on Waterloo",
+            "Starting his own company",
+            "Google acquisition story",
+            "Joining Google",
+            "Switching back to IC",
+            "Principal+ Engineering at Shopify",
+            "Career regrets",
+            "Top career-impacting book",
+            "Advice for younger self"
+        ]
+    },
     "blocks": [
         {
             "topic": "Thoughts on Waterloo",

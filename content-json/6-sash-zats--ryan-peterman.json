@@ -1,5 +1,32 @@
 {
-    "guest": "Sash Zats",
+    "guest": {
+        "name": "Sash Zats",
+        "title": "Staff Engineer (IC6) at Meta",
+        "company": "Meta",
+        "company_size": 70000,
+        "YOE_starting": null,
+        "background": "Software engineer at Instagram Sash has been working at Meta for over 8 years focusing on 0 to 1 spaces with focus on innovation at scale."
+    },
+    "episode": {
+        "title": "Instagram Staff (IC6) Promo Despite 10 Team Switches in 9 Years (Career Story)",
+        "host": "Ryan Peterman",
+        "description": "Sash Zats grew to be a Staff Engineer (IC6) at Meta despite switching teams 10 times in 9 years. His career journey was a series of jumps to exciting projects and letting career growth happen as a byproduct. I interviewed him to show you how team switches can play out.",
+        "date": "08/08/2025",
+        "duration_minutes": 48,
+        "topics": [
+            "First team - iOS on Newsfeed Delight",
+            "What makes a good designer partner?",
+            "Joining a hardware team",
+            "2 diffs in 6 months",
+            "Joining the Instagram blockchain team",
+            "Joining Instagram Threads pre-launch",
+            "Working with an exceptional engineer (Peter)",
+            "Working on AI prototyping teams",
+            "Reflecting on team switching\u2019s impact on career growth",
+            "Why leave Meta",
+            "Advice for younger self"
+        ]
+    },
     "blocks": [
         {
             "topic": "First team: iOS on Newsfeed Delight",

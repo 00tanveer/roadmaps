@@ -1,0 +1,313 @@
+[
+  {
+    "question": "You mentioned you went to Waterloo and I, I gotta ask the smartest interns that I ever worked with, they came from MIT, Caltech, and Tsinghua University in China, but the best interns I ever worked with all came from Waterloo. And so I, I’m curious, what is it that makes these Waterloo interns so strong?",
+    "insights": [
+      {
+        "insight": "The co-op program at Waterloo provides a unique opportunity for students to gain hands-on experience and try out different industries and roles without the stigma of job-hopping.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Waterloo's rotation-based co-op model allows students to constantly iterate between studying and working, giving them multiple shots on goal and helping them discover their true interests and strengths.",
+        "type": "learning"
+      },
+      {
+        "insight": "The program's emphasis on pragmatic engineering, where students are encouraged to build and implement real-world solutions rather than just theoretical knowledge, is a key factor in its success.",
+        "type": "technical"
+      }
+    ]
+  },
+  {
+    "question": "After you went through all of those iterations and all the co-op loops, understand that you started your own company, um, which became post rank. Was then acquired by Google. And I’m curious the story behind you choosing to found a company Right after graduating from Waterloo.",
+    "insights": [
+      {
+        "insight": "Success is often driven by serendipity and being in the right place at the right time.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "Ilya's experience highlights the importance of taking calculated risks and being open to unexpected opportunities.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Entrepreneurship can be a more effective way to learn about business and innovation than formal education.",
+        "type": "learning"
+      }
+    ]
+  },
+  {
+    "question": "So in the process of building this company, I know eventually it was acquired by Google, but I’m really curious because I feel like a lot of acquisition conversations are behind the scenes. Hush, hush. Um, what does that kind of conversation look like? Like when they reach out for an acquisition and maybe you can tell that story.",
+    "insights": [
+      {
+        "insight": "Acquisition conversations can be surprisingly informal and low-stakes, with potential acquirers reaching out in a non-committal way to explore possibilities.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Companies may acquire others not for their specific product or technology, but rather for the expertise and infrastructure they can bring to accelerate their own development.",
+        "type": "industry_trend"
+      },
+      {
+        "insight": "Mutual benefit and a clear understanding of each other's needs are key to successful acquisitions, with both parties seeking to gain from the partnership.",
+        "type": "philosophy"
+      }
+    ]
+  },
+  {
+    "question": "In being brought in as an acquisition, how’d they determine leveling or compensation or any of that stuff?",
+    "insights": [
+      {
+        "insight": "Acquired teams often undergo a wholesale evaluation process to assess team quality and individual engineer levels.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "The primary goal in evaluating acquired engineers is to determine their level and fit within the existing organizational structure.",
+        "type": "decision_making"
+      }
+    ]
+  },
+  {
+    "question": "I see. Okay. So it’s, it is just a normal interview process. What about in the case though, ‘cause you’re bringing in company and assets and stuff, is that just like a giant signing bonus or something, or. How’s that?",
+    "insights": [
+      {
+        "insight": "The negotiation process for acquiring a company can be complex, involving distinct conversations around IP, customers, people, and product.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "When evaluating potential acquisitions, it's essential to consider the role of talent and ensure that the acquired team has the right experience and skills to contribute to the larger organization.",
+        "type": "decision_making"
+      },
+      {
+        "insight": "Acquiring a company can be a 'trial by fire' for the engineering team, requiring them to adapt quickly to new infrastructure and scale, but also providing opportunities for growth and learning.",
+        "type": "career_reflection"
+      }
+    ]
+  },
+  {
+    "question": "So I want to get into your career at Google and it sounds like you were placed initially in Google Analytics. I’m curious what the leveling was and the role. Were you a manager? ‘cause you mentioned your, you brought your team with you.",
+    "insights": [
+      {
+        "insight": "Embracing a lateral step can lead to new opportunities for personal growth and exploration",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "Collaboration and open communication are key to achieving shared goals in a high-performing team",
+        "type": "leadership"
+      },
+      {
+        "insight": "Being part of an innovative company like Google can be both exhilarating and humbling, requiring continuous learning and adaptation",
+        "type": "learning"
+      }
+    ]
+  },
+  {
+    "question": "You turn down this more clear cut director path, which would be the clear cut growth path for career. Um, to optimize for other things, which was sounds like intrinsic motivation in the work. Curiosity, and also sounds like maybe you got some time back. Is that the math you were doing in your head and making that choice?",
+    "insights": [
+      {
+        "insight": "Prioritizing self-direction and autonomy over traditional career advancement.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Managers often sacrifice their own goals and desires to serve others, leading to a loss of personal agency.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "Ilya values intrinsic motivation and autonomy in his work, seeking projects that allow him to apply his skills in unique ways.",
+        "type": "philosophy"
+      }
+    ]
+  },
+  {
+    "question": "So later I saw that you switched back to management and your director. Uh, developer relations at Google. So what was the rationale then? Switching back, given what you just said?",
+    "insights": [
+      {
+        "insight": "Switching between IC and management roles is a common path for high-performing individuals.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Effective technical leaders need to have a dynamic range of skills, from low-level technical expertise to business requirements understanding.",
+        "type": "technical"
+      },
+      {
+        "insight": "Injecting energy into an ecosystem often requires recruiting and leading a team of people, rather than relying on individual effort.",
+        "type": "leadership"
+      }
+    ]
+  },
+  {
+    "question": "So when you say tour of duty, it’s this starting as an ic, doing path finding, and then becoming a manager potentially is all. In service of a mission or a problem. Like you, you see some problem. Maybe em is the best way to solve that problem. Maybe IC is, but it’s really all about the problem.",
+    "insights": [
+      {
+        "insight": "The measure of success as a principal engineer is upleveling the team and making them self-sufficient.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Taking on a 'tour of duty' requires judgment and commitment to solving a specific problem, often requiring unique leverage or expertise.",
+        "type": "leadership"
+      },
+      {
+        "insight": "The goal of becoming an IC again after a tour of duty is to focus on the next problem to solve, with a planned succession plan in place.",
+        "type": "career_reflection"
+      }
+    ]
+  },
+  {
+    "question": "I know later the story continues with you went to Shopify. You became an IC and you went from a principal engineer to a distinguished engineer. I’m curious, what is the tour of duty there that got you promoted?",
+    "insights": [
+      {
+        "insight": "A key characteristic of being a principal engineer is the ability to navigate ambiguous problems and figure out how to apply one's skillset to help.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Proof of being a distinguished engineer involves demonstrating dynamic range, showing that you can operate across multiple domains, from technical to business requirements.",
+        "type": "technical"
+      },
+      {
+        "insight": "Optimizing for being the only person with a diverse talent stack is more resilient than specializing in one area and becoming the best person.",
+        "type": "career_reflection"
+      }
+    ]
+  },
+  {
+    "question": "I see. So when you say don’t be the best, be the only, you’re saying that generalists have an advantage because they can put together a bunch of skill sets, get most of the way there, and be the only because the intersection of all the skill sets is more special and more resilient because you have such a wide toolbox. Is that right?",
+    "insights": [
+      {
+        "insight": "Generalists have an advantage due to their ability to combine multiple skill sets, making them more versatile and effective in ambiguous situations.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Having a wide range of tools allows individuals to adapt to different situations and act temporarily in various roles, increasing their value as generalists.",
+        "type": "technical"
+      },
+      {
+        "insight": "Being the only expert at the intersection of multiple skill sets is not just about being good at each individual skill, but also about being able to combine them effectively.",
+        "type": "learning"
+      }
+    ]
+  },
+  {
+    "question": "I had one mentor who did Seesaw as well, and he said that management. Always appreciates an IC that understands management because it’s much easier to partner with them.",
+    "insights": [
+      {
+        "insight": "One's happiness and confidence in their career can be more important than moving up the management ladder.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "It's beneficial for individuals to try out different roles, including management, as it provides valuable learning experiences and tools for their toolkit.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Companies should prioritize creating a culture where transitioning between IC and manager roles is valued and not seen as a demotion.",
+        "type": "leadership"
+      }
+    ]
+  },
+  {
+    "question": "When you look over the course of your career, were there any points where you have regrets that others could learn from?",
+    "insights": [
+      {
+        "insight": "Early failures and embarrassments are crucial stepping stones to growth and improvement.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "As success grows, so does the pressure to maintain high standards, potentially stifling innovation and progress.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Prioritizing feedback and exposure over personal perfection can accelerate learning and development.",
+        "type": "learning"
+      }
+    ]
+  },
+  {
+    "question": "Definitely, definitely. And yes, I can relate. I think there was a, there’s a year or two where I was writing a newsletter and every week I’d published something and at some point the email list is growing and it’s growing, and I could tell at the beginning when I’m ideating, what am I gonna write this week? A lot more nos coming in my mind. I go, oh no, this one, this topic’s not good. Right? Uh, I’ve seen this somewhere. Oh, this.",
+    "insights": [
+      {
+        "insight": "The fear of being wrong or disliked can hold people back from sharing their genuine thoughts and ideas.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "It's essential to develop a mindset that allows for vulnerability and openness to making mistakes in the pursuit of knowledge and growth.",
+        "type": "philosophy"
+      },
+      {
+        "insight": "Ryan/Ilya emphasizes the importance of self-awareness and humility, acknowledging that even experienced individuals can have doubts and uncertainties.",
+        "type": "career_reflection"
+      }
+    ]
+  },
+  {
+    "question": "Definitely. And I, I also wonder if that kind of similar thinking as you grow in your career. I mean, it would take some courage for you to step into a new area that’s completely new to you if everyone knows you as distinguished engineer and very knowledgeable in your given domain to step into some new area where you’re gonna make a lot of mistakes. That, that feeling of that downgrade is, is tough for a lot of people.",
+    "insights": [
+      {
+        "insight": "Setting the right expectations with oneself and others is crucial when entering a new area or conversation.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Asking questions versus questioning work is a subtle but important distinction that can impact how one is perceived in a new environment.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "A collaborative approach to learning and problem-solving, where expertise is leveraged and knowledge shared, can be more effective than trying to do everything alone or questioning others' work.",
+        "type": "leadership"
+      }
+    ]
+  },
+  {
+    "question": "Is there a top book that impacted your career?",
+    "insights": [
+      {
+        "insight": "Rethinking traditional education models is crucial for fostering creativity and adaptability.",
+        "type": "philosophy"
+      },
+      {
+        "insight": "The current educational system often stifles individual growth by pigeonholing students into age-based categories and skill sets.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Encouraging choice and mixing of skills can help build a more effective education system.",
+        "type": "philosophy"
+      }
+    ]
+  },
+  {
+    "question": "Then the last question is, if you could go back to yourself at the beginning of your career and give yourself some advice, knowing everything you know now, what would you say?",
+    "insights": [
+      {
+        "insight": "Focus on being unique rather than trying to be the best.",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Self-doubt is common, but embracing your strengths and passions can lead to success.",
+        "type": "personal_growth"
+      },
+      {
+        "insight": "Public speaking anxiety can often stem from lack of passion or investment in the topic.",
+        "type": "learning"
+      }
+    ]
+  },
+  {
+    "question": "I see. So to be more brave. Chase your passions. Yeah.",
+    "insights": [
+      {
+        "insight": "Chasing one's passion changes engagement and behavior",
+        "type": "career_reflection"
+      },
+      {
+        "insight": "Passion-driven work allows for a shift from structured learning to self-directed engagement",
+        "type": "career_reflection"
+      }
+    ]
+  },
+  {
+    "question": "Awesome. Well thank you so much for your time, Ilya. I’m really excited to share this one with everyone. Is there anything you wanna say to the audience before we end the, the recording?",
+    "insights": [
+      {
+        "insight": "Share expertise and be approachable as a leader",
+        "type": "leadership"
+      },
+      {
+        "insight": "Make yourself available for mentorship and learning opportunities",
+        "type": "personal_growth"
+      }
+    ]
+  }
+]

@@ -186,7 +186,8 @@ for filepath in filepaths:
         transcript = parse_transcript(f)
         blocks = build_blocks(transcript, host_name=metadata['episode']['host'].split()[0], guest_name=metadata['guest']['name'].split()[0])
         document = {} # Create a new document dictionary for each file
-        document['guest'] = metadata['guest']['name']
+        document['guest'] = metadata['guest']
+        document['episode'] = metadata['episode']
         print(document['guest'])
         document['blocks'] = blocks
         documents.append(document)

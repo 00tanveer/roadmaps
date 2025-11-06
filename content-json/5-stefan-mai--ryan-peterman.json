@@ -1,5 +1,42 @@
 {
-    "guest": "Stefan Mai",
+    "guest": {
+        "name": "Stefan Mai",
+        "title": "Senior Engineering Manager at Meta",
+        "company": "Hello Interview",
+        "company_size": "10s",
+        "YOE_starting": null,
+        "background": [
+            "Early career at Amazon",
+            "Growth to eng manager at Amazon",
+            "Storytelling tips",
+            "Why he left Amazon",
+            "Transitioning to AI/ML",
+            "Senior manager (M2) promo story at Meta",
+            "Mutiny and manager politics",
+            "Are managers harder to layoff?",
+            "Senior manager (M2) skill gaps",
+            "Eng vs manager career growth",
+            "Amazon vs Meta culture",
+            "Amazon vs Meta performance",
+            "Low performer quotas",
+            "Can you get out of a PIP?",
+            "AI interview cheating",
+            "Passing OpenAI & Anthropic interviews",
+            "Job hopping",
+            "When he grew the most",
+            "How to write better",
+            "Career motivations past M2",
+            "Advice for younger self"
+        ]
+    },
+    "episode": {
+        "title": "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)",
+        "host": "Ryan Peterman",
+        "description": "Stefan Mai was a Senior Manager (M2) with experience across Meta and Amazon. We went over his career story in growing to M2 which is equivalent to Senior Staff (IC7) in big tech. Since he started his own company now, he was happy to be fully transparent about the behind the scenes of managing in big tech. Since he founded the interview prep company, Hello Interview, I also thought it\u2019d be interesting to talk about trends he\u2019s seeing in AI cheating tools and how to get offers at OpenAI/Anthropic.",
+        "date": "15/08/2025",
+        "duration_minutes": 91,
+        "topics": null
+    },
     "blocks": [
         {
             "topic": "Early career at Amazon",

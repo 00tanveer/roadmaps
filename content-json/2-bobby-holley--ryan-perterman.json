@@ -1,5 +1,37 @@
 {
-    "guest": "Bobby Holley",
+    "guest": {
+        "name": "Bobby Holley",
+        "title": "CTO at Mozilla Firefox",
+        "company": "Mozilla Firefox",
+        "company_size": 1300,
+        "YOE_starting": null,
+        "background": "Went from an intern to the CTO of Mozilla Firefox"
+    },
+    "episode": {
+        "title": "Mozilla Firefox CTO on Browser War Stories and the Path to Distinguished Engineer",
+        "host": "Ryan Peterman",
+        "description": "Bobby Holley went from an intern to the CTO of Mozilla Firefox. I asked him about everything he learned in that process. We cover his full career including some interesting stories on living through the browser wars and advice on career growth to the highest levels.",
+        "date": "10/10/2025",
+        "duration_minutes": 95,
+        "topics": [
+            "Starting at Mozilla",
+            "Browser wars history",
+            "Google relationship changing",
+            "Why work for free",
+            "Projects that drove his career",
+            "No performance reviews",
+            "Rust adoption",
+            "Career progression",
+            "Should you focus on promos",
+            "Distinguished promo rejection",
+            "Examples of distinguished engs",
+            "Advice for aspiring distinguished engs",
+            "AI browser wars",
+            "Biggest technical regret",
+            "Book that impacted his career most",
+            "Advice for his younger self"
+        ]
+    },
     "blocks": [
         {
             "topic": "Starting at Mozilla",

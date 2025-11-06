@@ -1,2 +1,4 @@
 pyyaml
-
+hugginface_hub
+dotenv
+faiss-cpu

@@ -1,5 +1,42 @@
 {
-    "guest": "David Singleton",
+    "guest": {
+        "name": "David Singleton",
+        "title": "CTO at Stripe",
+        "company": "/dev/agents",
+        "company_size": "10s",
+        "YOE_starting": null,
+        "background": "Intern to Distinguished Engineer at Microsoft (11 promotions)"
+    },
+    "episode": {
+        "title": "Intern to Microsoft Distinguished Engineer in 11 Promotions (Career Story)",
+        "host": "Ryan Peterman",
+        "description": "David Singleton was the CTO at Stripe for 7 years before he left to start /dev/agents. Prior to Stripe, he grew from a junior engineer to a VP at Google. I recently asked him about everything he knows about career growth and being an excellent engineering leader. We discussed how Stripe hired at scale without Leetcode, why he thinks all engineering leaders should write code, the book that impacted his career most and many more topics.",
+        "date": "29/08/2025",
+        "duration_minutes": 126,
+        "topics": [
+            "Before Google",
+            "Joining Google",
+            "Deciding to try management",
+            "How to decide on EM vs IC",
+            "Biggest gap in managing managers",
+            "The difference between VP and Senior EM",
+            "How to communicate well",
+            "How managers can scale themselves",
+            "How to build a new engineering site",
+            "What kept him at Google",
+            "The story behind joining Stripe",
+            "Comparing and constrasting cultures",
+            "How to set culture",
+            "Is Stripe too reliable?",
+            "Hiring at scale without Leetcode",
+            "Lessons learned working with Stripe\u2019s leadership",
+            "Why leave Stripe",
+            "How his AI startup plans to compete",
+            "Career reflections - regrets - what went well",
+            "Top book & habit that impacted his career",
+            "Advice for younger self"
+        ]
+    },
     "blocks": [
         {
             "topic": "Before Google",
