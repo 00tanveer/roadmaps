@@ -1,4 +1,5 @@
 ---
+podcast_name: The Peterman Pod
 guest_name: Bobby Holley
 host_name: Ryan Peterman
 biggest_role: CTO at Mozilla Firefox

@@ -4,12 +4,21 @@ from lib.indexer import Indexer
 from lib.retrieval import Retriever
 import uvicorn
 import threading
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Stories Search API", version="1.0")
 
+# Enable frontend access (localhost dev)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # tighten later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ---- Initialize the Indexer (singleton)
 indexer = Indexer(data_dir="data", subfolder="insights_json", use_remote=False)
-retriever = Retriever(data_dir="data", subfolder="insights_json")
+retriever = Retriever(data_dir="data", subfolder="content_json")
 # Try loading an existing index; fallback to rebuild
 try:
     print(indexer.load_questions_index())

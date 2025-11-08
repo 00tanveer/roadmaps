@@ -1,4 +1,5 @@
 ---
+podcast_name: The Peterman Pod
 guest_name: David Singleton
 host_name: Ryan Peterman
 biggest_role: CTO at Stripe
