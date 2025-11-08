@@ -4,6 +4,7 @@ import numpy as np
 import json 
 from tqdm import tqdm
 import os
+import hashlib
 
 
 class Indexer:
@@ -19,10 +20,9 @@ class Indexer:
     OLLAMA_HOST_LOCAL = 'http://localhost:11434'
     OLLAMA_HOST_REMOTE = 'https://ovb1wujcy8gupy-11434.proxy.runpod.net'
     
-    def __init__(self, data_dir="data", subfolder="insights_json", use_remote=False):
+    def __init__(self, data_dir="data", subfolder="content_json", use_remote=False):
         self.data_dir = data_dir
         self.folder_path = os.path.join(data_dir, subfolder)
-        print(self.folder_path)
         self.index_path = os.path.join(data_dir, "questions.index")
 
         if not os.path.exists(self.folder_path):
@@ -43,11 +43,10 @@ class Indexer:
         for path in self.filepaths:
             with open(path, "r") as f:
                 data = json.load(f)
-                for block in data:
-                    if "question" in block:
-                        questions.append(block["question"])
+                for block in data['blocks']:
+                    questions.append(block["question_text"])
         self.questions = questions
-        print(f"✅ Loaded {len(self.questions)} questions.")
+        print(f"📦 Loaded {len(self.questions)} questions.")
         return self.questions
     
     def get_embedding(self, text, model=None):
@@ -60,32 +59,33 @@ class Indexer:
 
     def build_questions_index(self):
         """Generates embeddings and builds FAISS index."""
-        questions = []
-        for path in self.filepaths:
-            with open(path, 'r') as f:
-                data = json.load(f)
-                for block in data:
-                    questions.append(block['question'])
+        questions = self.load_questions()
+        print(questions)
         embeddings = []
-        for q in tqdm(questions[:5], desc=f"Generating embeddings for question"):
-            embeddings.append(self.get_embedding(q))
+        for q in tqdm(questions, desc=f"Generating embeddings for question"):
+            print(q)
+            vec = self.get_embedding(q)
+            if vec is not None and np.isfinite(vec).all():
+                embeddings.append(vec)
+            else:
+                print(f"⚠️ Skipping invalid embedding for question: {q[:50]}...")
 
-        embeddings = np.array(embeddings)
-
+        embeddings = np.array(embeddings, dtype=np.float32)
+       # Normalize vectors for cosine similarity
+        faiss.normalize_L2(embeddings)
         # Build FAISS index
         dim = embeddings.shape[1]
-        index = faiss.IndexFlatIP(dim)  # Inner product = cosine if normalized
-        # Normalize vectors for cosine similarity
-        faiss.normalize_L2(embeddings)
-        # Add to index
+        index = faiss.IndexFlatIP(dim)  # cosine similarity
         index.add(embeddings)
+
         self.questions_index = index
-        faiss.write_index(self.questions_index, "data/questions.index")
+        faiss.write_index(index, "data/questions.index")
+
+        print(f"💾 Saved FAISS index with {index.ntotal} vectors.")
 
     def load_questions_index(self, path="data/questions.index"):
         """Loads FAISS index from disk."""
         path = path or self.index_path
-        print(path)
         if not os.path.exists(path):
             raise FileNotFoundError(f"❌ Index file not found: {path}")
         self.questions_index = faiss.read_index(path)

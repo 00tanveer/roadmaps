@@ -2,6 +2,7 @@ import os
 import json
 import faiss
 from lib.indexer import Indexer
+import numpy as np
 
 class Retriever:
     """
@@ -26,27 +27,33 @@ class Retriever:
                 continue
             with open(path, "r") as file:
                 data = json.load(file)
-                print(data)
                 for block in data['blocks']:
-                    if "question_text" in block and "answer_text" in block:
+                    if "question_text" in block:
                         qa.append((block["question_text"], block['answer_text'], block['start_time']))
         print(f"✅ Loaded {len(qa)} question-answer pairs from {self.folder_path}")
         return qa
 
     def search(self, query_text, top_k=10, threshold=0.45):
         """Search top-k similar questions."""
-        query_vec = self.indexer.get_embedding(query_text).reshape(1, -1)
+        query_vec = self.indexer.get_embedding(query_text).reshape(1, -1).astype(np.float32)
         faiss.normalize_L2(query_vec)
-        print(type(self.questions_index))
+
+        # sanity check
+        if np.any(~np.isfinite(query_vec)):
+            print("❌ Invalid query embedding:", query_vec)
+            return []
+        
+        print(f"🔍 Searching for: {query_text}")
         D, I = self.questions_index.search(query_vec, top_k)
 
         results = []
         for idx, score in zip(I[0], D[0]):
             if idx < len(self.qa) and score > threshold:
+                q, a, t = self.qa[idx]
                 results.append({
-                    "question": self.qa[idx][0],
+                    "question": q,
                     "similarity": round(float(score),4),
-                    "answer": self.qa[idx][1],
-                    "start_time": self.qa[idx][2]
+                    "answer": a,
+                    "start_time": t
                 })
         return results

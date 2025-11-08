@@ -4,3 +4,4 @@ faiss-cpu
 tqdm
 fastapi
 uvicorn
+requests

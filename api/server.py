@@ -17,11 +17,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 # ---- Initialize the Indexer (singleton)
-indexer = Indexer(data_dir="data", subfolder="insights_json", use_remote=False)
+indexer = Indexer(data_dir="data", subfolder="content_json", use_remote=False)
 retriever = Retriever(data_dir="data", subfolder="content_json")
 # Try loading an existing index; fallback to rebuild
 try:
-    print(indexer.load_questions_index())
+    indexer.load_questions_index()
 except FileNotFoundError:
     print("⚠️ No existing index found, building a new one...")
     threading.Thread(target=indexer.build_questions_index).start()
