@@ -1,7 +1,7 @@
 import os
 import json
 import faiss
-from lib.indexer import Indexer
+from app.services.indexer import Indexer
 import numpy as np
 
 class Retriever:

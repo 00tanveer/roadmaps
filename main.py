@@ -1,6 +1,6 @@
 # main.py
-from lib.indexer import Indexer
-from lib.retrieval import Retriever
+from app.services.indexer import Indexer
+from app.services.retrieval import Retriever
 import numpy as np
 
 def main():

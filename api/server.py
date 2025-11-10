@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from lib.indexer import Indexer
-from lib.retrieval import Retriever
+from app.services.indexer import Indexer
+from app.services.retrieval import Retriever
 import uvicorn
 import threading
 from fastapi.middleware.cors import CORSMiddleware
