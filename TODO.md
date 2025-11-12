@@ -1,9 +1,10 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
-- [ ] Organize repo into distinct services (1. core services like fetching, transcription, knowledge extraction, indexing; 2. fastapi server 3. data 4. workers)
-- [ ] Data scripts to pull curated podcast and their episodes metadata with API, store in json
-- [ ] Use the AssemblyAI API for transcribing all episodes
+- [ ] SQlite database with SQLAlchemy for podcasts, episodes and transcripts
+- [ ] Organize repo into distinct services (1. core services like fetching, transcription, knowledge extraction, indexing; 2. fastapi server 3. data 4. workers) DONE
+- [ ] Data scripts to pull curated podcast and their episodes metadata with API, store in json DONE
+- [ ] Use the AssemblyAI API for transcribing all episodes ~125 OUT OF ~200 DONE (out of AAI credits)
 - [ ] Make connection between Podplayer and Story Results (QA pair cards) seamless
 - [ ] Add toolbar (play, insights,) to QA pair cards
 - [ ] Write the backend service for pulling podcast data with Podcastindex API. Enrich curated collection of 20 episodes (The Perterman Pod) with an automated script

@@ -37,6 +37,7 @@ class IABResult(BaseModel):
 class IABCategoriesResult(BaseModel):
     status: Optional[str]
     results: List[IABResult] = []
+    summary: dict
 
 # --- Main transcript response ---
 class Transcript(BaseModel):
