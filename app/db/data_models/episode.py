@@ -2,8 +2,10 @@
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, DateTime, ForeignKey, func
+from sqlalchemy.dialects.postgresql import JSONB
 from app.db.base import Base
 from datetime import datetime
+import sqlalchemy as sa
 
 class Episode(Base):
     __tablename__ = "episodes"
@@ -17,11 +19,16 @@ class Episode(Base):
     enclosure_url: Mapped[str]
     duration: Mapped[int]
     date_published: Mapped[datetime]
-    host_questions: Mapped[str]  # Store JSON or serialized list if needed
+    host_questions: Mapped[list] = mapped_column(JSONB, default=list, nullable=True)
+    question_answers: Mapped[list] = mapped_column(JSONB, default=list, nullable=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
 
     podcast: Mapped["Podcast"] = relationship("Podcast", back_populates="episodes")
     transcript: Mapped["Transcript"] = relationship(
         back_populates="episode", uselist=False, 
         cascade="all, delete-orphan"
+    ),
+    __table_args__ = (
+        sa.Index("ix_episode_host_questions", "host_questions"),
+        sa.Index("ix_episode_question_answers", "question_answers"),
     )

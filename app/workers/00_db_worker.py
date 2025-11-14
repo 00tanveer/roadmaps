@@ -33,8 +33,6 @@ async def get_podcast_titles():
         print(result)
 
 async def main():
-    # drop tables and recreate table (no migration support yet)
-    await setup_database()
     # save all podcasts from json 
     pods = json.load(open('data/podcasts/podcasts_metadata.json', 'r'))
     await asyncio.gather(*(save_podcast(pod) for pod in pods))
