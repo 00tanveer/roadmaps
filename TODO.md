@@ -1,7 +1,12 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
-- [ ] SQlite database with SQLAlchemy for podcasts, episodes and transcripts
+- [ ] Save questions and question-answer pairs to episode tables 
+- [ ] Set up sqlalchemy and companion alembic for ORM and migrations
+- [ ] Successfully retrieve question utterances and question/answer pairs from available transcripts DONE
+- [ ] Write worker for sending transcription requests to AssemblyAI API and fetching them when completed
+- [ ] Write data pipeline workers for fetching external data and persisting data in sqlite DONE
+- [ ] SQlite database with SQLAlchemy for podcasts, episodes and transcripts - DONE
 - [ ] Organize repo into distinct services (1. core services like fetching, transcription, knowledge extraction, indexing; 2. fastapi server 3. data 4. workers) DONE
 - [ ] Data scripts to pull curated podcast and their episodes metadata with API, store in json DONE
 - [ ] Use the AssemblyAI API for transcribing all episodes ~125 OUT OF ~200 DONE (out of AAI credits)

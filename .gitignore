@@ -4,4 +4,4 @@ stories_env/
 .env
 node_modules/
 data/
-app/language_models/question_detector/models/distilbert_question_detector
+app/language_models/question_detector/models/

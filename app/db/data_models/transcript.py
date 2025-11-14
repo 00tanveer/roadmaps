@@ -1,59 +1,21 @@
-from typing import List, Optional
-from pydantic import BaseModel, Field
+# app/db/models/transcript.py
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import String, ForeignKey, DateTime, func
+from app.db.base import Base
+from datetime import datetime
 
-# --- Word-level details ---
-class Word(BaseModel):
-    text: str
-    start: int
-    end: int
-    confidence: float
-    speaker: str
+class Transcript(Base):
+    __tablename__ = "transcripts"
 
-# --- Utterance (speaker-level segment) ---
-class Utterance(BaseModel):
-    start: int
-    end: int
-    confidence: float
-    speaker: str
-    text: str
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+    episode_id: Mapped[str] = mapped_column(ForeignKey("episodes.id", ondelete="CASCADE"), unique=True, index=True)
+    status: Mapped[str]
+    audio_url: Mapped[str]
+    text: Mapped[str]
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
 
-# --- Chapters Hihglight---
-class Chapter(BaseModel):
-    headline: Optional[str] = None
-    summary: str
-    gist: Optional[str] = None
-    start: int
-    end: int
-
-# --- IAB categories ---
-class IABLabel(BaseModel):
-    label: str
-    relevance: float
-
-class IABResult(BaseModel):
-    text: str
-    labels: List[IABLabel]
-
-class IABCategoriesResult(BaseModel):
-    status: Optional[str]
-    results: List[IABResult] = []
-    summary: dict
-
-# --- Main transcript response ---
-class Transcript(BaseModel):
-    id: str
-    status: str
-    audio_url: str
-    text: str
-
-    # Optional sub-results
-    words: List[Word] = []
-    utterances: List[Utterance] = []
-    chapters: List[Chapter] = []
-    iab_categories_result: Optional[IABCategoriesResult] = None
-
-    # Meta info
-    audio_duration: Optional[float] = None
-    confidence: Optional[float] = None
-    language_code: str
-    error: Optional[str] = None
+    episode: Mapped["Episode"] = relationship(back_populates="transcript", uselist=False)
+    words: Mapped[list["TranscriptWord"]] = relationship(back_populates="transcript", cascade="all, delete-orphan")
+    utterances: Mapped[list["TranscriptUtterance"]] = relationship(back_populates="transcript", cascade="all, delete-orphan")
+    chapters: Mapped[list["TranscriptChapter"]] = relationship(back_populates="transcript",
+                                                               cascade="all, delete-orphan")

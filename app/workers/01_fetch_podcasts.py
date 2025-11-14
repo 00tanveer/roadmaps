@@ -1,14 +1,18 @@
-# Create a csv of all podcasts with Podcastindex feed url, title, category DONE
-# Write a Python API wrapper for Podcastindex API DONE
-# Populate podcasts_metadata.json
+"""
+Sync-friendly worker:
+- Reads CSV of feed URLs
+- Calls PodcastIndex client (PDI_API) synchronously
+"""
 
 from app.services.podcasts import PDI_API
 import csv 
 import json
 import os
 
+CSV_PATH = "data/podcasts/podcast_feedurls.csv"
+
 def fetch_podcasts_metadata():
-    podcast_feedurls_csv_path = "data/podcasts/podcast_feedurls.csv"
+    podcast_feedurls_csv_path = CSV_PATH
     pdi_api = PDI_API()
     pods_to_fetch = []
     try:
@@ -40,7 +44,7 @@ def fetch_podcasts_metadata():
                 print(f"Warning: no feed data for {feed_url}: {res}")
         else:
             print(f"Error fetching {feed_url}: {res.get('error') or res}")
-
+    
     # Write the collected feeds to JSON file
     try:
         with open('data/podcasts/podcasts_metadata.json', 'w') as out_f:
@@ -90,54 +94,15 @@ def fetch_episodes_metadata():
             print(f"Wrote {len(episodes)} episodes(s) to data/podcasts/pod_episodes_metadata.json")
         except Exception as e:
             print(f"Failed to write podcasts_metadata.json: {e}")
-if not os.path.exists('data/podcasts/podcasts_metadata.json'):
-    fetch_podcasts_metadata()
 
-if not os.path.exists('data/podcasts/pod_episodes_metadata.json'):
-    fetch_episodes_metadata()
-
-episodes = json.load(open('data/podcasts/pod_episodes_metadata.json', 'r'))
-pods = json.load(open('data/podcasts/podcasts_metadata.json', 'r'))
-count = 0
-
-# for e in episodes:
-#     if e['feedId'] in [p['id'] for p in pods]:
-#         #print podcast title
-#         matching_pod = next((p for p in pods if p['id'] == e['feedId']), None)
-#         if matching_pod:
-#             print(f"Podcast Title: {matching_pod['title']}")
-#     print(e['title'])
-#     if e['transcriptUrl'] is not None:
-#         count += 1
-#         print(f"Transcript URL: {e['transcriptUrl']}")
-# total episides 
-print(len(episodes)) # 243
-mp3Count = 0
-# for e in episodes:
-#     if e['enclosureUrl'] is not None and 'mp3' in e['enclosureUrl']:
-#         mp3Count += 1
-#         # print(e['transcriptUrl'])
-#     else:
-#         print(e['enclosureUrl'])
-
-print(f"Total episodes with mp3: {mp3Count}") # 228
-print(f"Total episodes with transcripts: {count}") # very few
-
-# Create directories for all podcasts inside data/podcasts/ if not exist DONE 
-if os.path.exists('data/podcasts/podcasts_metadata.json'):
-    pods = json.load(open('data/podcasts/podcasts_metadata.json', 'r'))
-    for pod in pods:
-        pod_title = pod.get('title', 'unknown_podcast').replace('/', '_').replace('\\', '_')
-        pod_dir = os.path.join('data/podcasts/', pod_title)
-        if not os.path.exists(pod_dir):
-            os.makedirs(pod_dir)
-            print(f"Created directory: {pod_dir}")
-        else:
-            print(f"Directory already exists: {pod_dir}")
+def main():
+    if not os.path.exists('data/podcasts/podcasts_metadata.json'):
+        fetch_podcasts_metadata()
+    if not os.path.exists('data/podcasts/pod_episodes_metadata.json'):
+        fetch_episodes_metadata()
 
 
 
-
-
-# Similarly fetch episodes for each podcast and write to pod_episodes_metadata.json
+if __name__ == "__main__":
+    main()
 
