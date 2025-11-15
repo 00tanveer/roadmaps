@@ -27,8 +27,4 @@ class Episode(Base):
     transcript: Mapped["Transcript"] = relationship(
         back_populates="episode", uselist=False, 
         cascade="all, delete-orphan"
-    ),
-    __table_args__ = (
-        sa.Index("ix_episode_host_questions", "host_questions"),
-        sa.Index("ix_episode_question_answers", "question_answers"),
     )

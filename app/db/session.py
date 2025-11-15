@@ -6,17 +6,12 @@ from app.db.data_models import *
 from dotenv import load_dotenv
 
 load_dotenv()
-POSTGRES_USER=os.getenv('POSTGRES_USER') 
-POSTGRES_PASSWORD=os.getenv('POSTGRES_PASSWORD')
-POSTGRES_DB=os.getenv('POSTGRES_DB')
-POSTGRES_HOST=os.getenv('lo')
+db_url = os.getenv("DATABASE_URL")
 
-DATABASE_URL = f"postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
-
-engine = create_async_engine(DATABASE_URL, echo=False, future=True)
+engine = create_async_engine(db_url, echo=True, future=True)
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
-async def init_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+# async def init_db():
+#     async with engine.begin() as conn:
+#         await conn.run_sync(Base.metadata.drop_all)
+#         await conn.run_sync(Base.metadata.create_all)

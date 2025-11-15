@@ -12,16 +12,11 @@ from app.db.data_models.podcast import Podcast
 from app.db.data_models.episode import Episode
 from app.db.data_models.transcript import Transcript
 from app.db.data_models.transcript_word import TranscriptWord
-from app.db.data_models.transcript_chapter import TranscriptChapter
 from app.language_models.question_detector.src.infer import InferenceModel
 
 from app.services.podcasts import read_episode_metadata
 
 questions_model = InferenceModel()
-
-async def episode_metadata(id):
-    result = await read_episode_metadata(id)
-    print(result)
 
 def is_question(text: str) -> bool:
     if len(text.split()) > 100:
@@ -32,48 +27,43 @@ def is_question(text: str) -> bool:
     return False
 
 async def main():
-    async with AsyncSessionLocal() as session:
-        async with session.begin():
-            
-            # Failed transcripts - 
-            # c3f913fc-7fcd-4ae5-a80d-b34f10398cf8
-            # 91c07122-a786-4c45-9ac4-ad32d3efe483
-            transcript_count_query = select(
-                func.count(Transcript.id)
-            )
-            result = await session.execute(transcript_count_query)
-            episodes_count_query = (
-                select(
-                    Podcast.title.label('pod_title'),
-                    func.count(Episode.id)
-                )
-                .join(Podcast.episodes)
-                .where(Podcast.title == "The Peterman Pod")
-                .group_by(Podcast.title)
-            )
-            for r in result:
-                print("Transcripts count", r)
-            result = await session.execute(episodes_count_query)
-            for r in result:
-                print(r)
-            stmt = (
-                select(
-                    Podcast.title.label("podcast_title"),
-                    Episode.title.label("episode_title"),
-                    Episode.duration.label("episode_duration"),
-                    func.count(TranscriptWord.id).label("word_count"),
-                )
-                .join(Podcast.episodes)
-                .join(Episode.transcript)
-                .join(Transcript.words)
-                .join(Transcript.chapters)
-                .where(Podcast.title == "The Peterman Pod")
-                .group_by(Podcast.title, Episode.title)
-            )
-            result = await session.execute(stmt)
-            for row in result:
-                print(f'{row.podcast_title}\n{row.episode_title}\n{row.episode_duration//60}min\n{row.word_count} words\n\n')
+    results = await extract_questions()
+    await save_question_results(results)
+    print("🎉 All questions & answers saved!")
 
+sem = asyncio.Semaphore(10)
+async def questions_from_one_episode(ep):
+    async with sem:
+        try:
+            print("\nTITLE:", ep.title)
+            transcript = ep.transcript
+            if transcript is None:
+                print(f"  ❌ No transcript for episode {ep.id}")
+                return None
+            guest = guest_speaker(transcript)
+            host_questions = []
+            question_answers = []
+            for i,u in enumerate(transcript.utterances):
+                if u.speaker != guest and is_question(u.text):
+                    question = u.text
+                    # print("  Q→", question)
+                    host_questions.append(question)
+                    answer = transcript.utterances[i+1].text
+                    question_answers.append(
+                        {"question": u.text, "answer": answer}
+                    )
+                    # print("  A→", answer)
+            # ep.host_questions = host_questions
+            # ep.question_answers = question_answers
+
+            return {
+                "episode_id": ep.id,
+                "guest": guest,
+                "host_questions": host_questions,
+                "question_answers": question_answers
+            }
+        except Exception as e:
+            print(f'❌ Failed extracting questions from episode {ep.title}: {e}')
 # Retrieve host question utterances and store them in episodes
 async def extract_questions():
     async with AsyncSessionLocal() as session:
@@ -84,21 +74,22 @@ async def extract_questions():
             )
         )).scalars().all()
 
+        # detach objects so they are usable safely in workers
         for ep in episodes:
-            print("\nTITLE:", ep.title)
-
-            transcript = ep.transcript
-            if transcript is None:
-                print(f"  ❌ No transcript for episode {ep.id}")
-                continue
-            guest = guest_speaker(transcript)
-            host_questions = []
-            for i,u in enumerate(transcript.utterances):
-                if u.speaker != guest and is_question(u.text):
-                    print("  Q→", u.text)
-                    host_questions.append(u)
-                    print("  A→", transcript.utterances[i+1].text)
-# all_questions = []
+            session.expunge(ep)
+        tasks = [
+            questions_from_one_episode(ep)
+            for ep in episodes
+        ]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    return [r for r in results if r is not None]
+async def save_question_results(results):
+    async with AsyncSessionLocal() as session:
+        async with session.begin():
+            for r in results:
+                ep = await session.get(Episode, r["episode_id"])
+                ep.host_questions = r["host_questions"]
+                ep.question_answers = r["question_answers"]
 # Find speaker with most utterance words
 def guest_speaker(transcript: Transcript) -> str:
     speaker_word_count = {}
@@ -114,9 +105,7 @@ def guest_speaker(transcript: Transcript) -> str:
 
 # # print(f"Extracted a total of host {len(all_questions)} questions from {len(transcript_files[:1])} transcripts.")
 if __name__ == "__main__":
-    # asyncio.run(main())
-    asyncio.run(extract_questions())
-    # asyncio.run(read_episode_metadata(41867229979))
+    asyncio.run(main())
 
 
 

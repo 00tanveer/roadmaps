@@ -6,7 +6,7 @@ Use this to:
 """
 
 import asyncio
-from app.db.session import AsyncSessionLocal, init_db
+from app.db.session import AsyncSessionLocal
 from app.db.data_models.podcast import Podcast
 from app.db.data_models.episode import Episode
 import json
@@ -15,12 +15,6 @@ from app.services.podcasts import save_episodes
 from app.services.podcasts import save_transcripts
 from sqlalchemy import select
 import os
-
-async def setup_database():
-    """Create database schema (idempotent)."""
-    print("[DB Worker] Initializing database schema...")
-    await init_db()
-    print("[DB Worker] All tables created (if not existing).")
 
 async def add_podcast_example():
     async with AsyncSessionLocal() as session:

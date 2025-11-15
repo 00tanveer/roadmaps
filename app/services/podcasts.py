@@ -14,7 +14,7 @@ from datetime import datetime
 from typing import Dict, Optional, List
 
 # Async DB session 
-from app.db.session import AsyncSessionLocal, init_db
+from app.db.session import AsyncSessionLocal
 from app.db.data_models.podcast import Podcast
 from app.db.data_models.episode import Episode
 from app.db.data_models.transcript import Transcript
@@ -178,7 +178,7 @@ def __map_item_to_episode(item: Dict) -> Episode:
 
     return Episode(
         id=str(item.get("id")),
-        podcast_id=item.get("feedId"),
+        podcast_id=str(item.get("feedId")),
         title=item.get("title") or "",
         podcast_url=item.get("link") or item.get("url") or "",
         podcast_image=item.get("feedImage") or None,
@@ -194,7 +194,7 @@ def __map_item_to_transcript(item: Dict) -> Transcript:
     """
     return Transcript(
         id=str(item.get("id")),
-        episode_id=(item.get("episodeId")),
+        episode_id=str(item.get("episodeId")),
         status=item.get("status"),
         audio_url=item.get("audio_url"),
         text=item.get("text"), 
@@ -269,7 +269,7 @@ async def save_episodes(items: List[Dict]):
     await asyncio.gather(*(save_one_episode(item) for item in items))
     return True
 
-semaphore = asyncio.Semaphore(1)
+semaphore = asyncio.Semaphore(5)
 async def save_one_transcript(t_dict: Dict, episodes: list, audio_urls: list):
     """Save a single transcript and its child objects."""
     async with semaphore:
