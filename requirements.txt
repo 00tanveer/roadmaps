@@ -1,6 +1,5 @@
 pyyaml
 dotenv
-faiss-cpu
 tqdm
 fastapi
 uvicorn

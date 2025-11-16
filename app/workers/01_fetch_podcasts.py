@@ -101,8 +101,6 @@ def main():
     if not os.path.exists('data/podcasts/pod_episodes_metadata.json'):
         fetch_episodes_metadata()
 
-
-
 if __name__ == "__main__":
     main()
 

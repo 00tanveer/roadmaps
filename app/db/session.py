@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 db_url = os.getenv("DATABASE_URL")
 
-engine = create_async_engine(db_url, echo=True, future=True)
+engine = create_async_engine(db_url, echo=False, future=True)
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
 # async def init_db():

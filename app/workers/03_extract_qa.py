@@ -11,14 +11,13 @@ from app.db.session import AsyncSessionLocal
 from app.db.data_models.podcast import Podcast
 from app.db.data_models.episode import Episode
 from app.db.data_models.transcript import Transcript
-from app.db.data_models.transcript_word import TranscriptWord
 from app.language_models.question_detector.src.infer import InferenceModel
 
-from app.services.podcasts import read_episode_metadata
+from app.services.podcasts import read_episode_data
 
-questions_model = InferenceModel()
 
-def is_question(text: str) -> bool:
+
+def is_question(text: str, questions_model) -> bool:
     if len(text.split()) > 100:
         return False
     score = questions_model.predict(text)[0]
@@ -32,7 +31,7 @@ async def main():
     print("🎉 All questions & answers saved!")
 
 sem = asyncio.Semaphore(10)
-async def questions_from_one_episode(ep):
+async def questions_from_one_episode(ep, questions_model):
     async with sem:
         try:
             print("\nTITLE:", ep.title)
@@ -44,8 +43,14 @@ async def questions_from_one_episode(ep):
             host_questions = []
             question_answers = []
             for i,u in enumerate(transcript.utterances):
-                if u.speaker != guest and is_question(u.text):
-                    question = u.text
+                if u.speaker != guest and is_question(u.text, questions_model):
+                    question = {
+                        "start": u.start,
+                        "end": u.end,
+                        "confidence": u.confidence,
+                        "speaker": u.speaker,
+                        "text": u.text
+                    }
                     # print("  Q→", question)
                     host_questions.append(question)
                     answer = transcript.utterances[i+1].text
@@ -66,6 +71,7 @@ async def questions_from_one_episode(ep):
             print(f'❌ Failed extracting questions from episode {ep.title}: {e}')
 # Retrieve host question utterances and store them in episodes
 async def extract_questions():
+    questions_model = InferenceModel()
     async with AsyncSessionLocal() as session:
         episodes = (await session.execute(
             select(Episode).options(
@@ -78,7 +84,7 @@ async def extract_questions():
         for ep in episodes:
             session.expunge(ep)
         tasks = [
-            questions_from_one_episode(ep)
+            questions_from_one_episode(ep, questions_model)
             for ep in episodes
         ]
     results = await asyncio.gather(*tasks, return_exceptions=True)
@@ -101,11 +107,17 @@ def guest_speaker(transcript: Transcript) -> str:
             speaker_word_count[utt.speaker] = word_count
     # Find speaker with max words
     guest = max(speaker_word_count, key=speaker_word_count.get)
-    return guest    
+    return guest  
+
+async def get_episode_data():
+    results = await read_episode_data()
+    for ep, author in results:   # now it unpacks correctly
+        print(author)
+        print(ep.host_questions)
 
 # # print(f"Extracted a total of host {len(all_questions)} questions from {len(transcript_files[:1])} transcripts.")
 if __name__ == "__main__":
-    asyncio.run(main())
-
+    asyncio.run(get_episode_data())
+    # asyncio.run(main())
 
 

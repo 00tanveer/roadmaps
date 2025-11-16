@@ -23,7 +23,7 @@ from app.db.data_models.transcript_utterance import TranscriptUtterance
 from app.db.data_models.transcript_word import TranscriptWord
 
 # sqlalchemy 
-from sqlalchemy import select, func, distinct
+from sqlalchemy import select, func, distinct, and_
 
 
 def get_version():
@@ -388,7 +388,7 @@ async def get_chapter_count(session, episode_id: str):
     )
     result = await session.execute(stmt)
     return result.scalar_one_or_none() or 0
-async def read_episode_metadata(episode_id: str) -> Dict:
+async def read_episode_data() -> Dict:
     '''
         Read episode information including guest information
         - episode title
@@ -401,33 +401,20 @@ async def read_episode_metadata(episode_id: str) -> Dict:
     '''
     async with AsyncSessionLocal() as session:
         async with session.begin():
-            episode_stmt = select(
-                Episode.title,
-                Episode.duration,
-                Podcast.title.label("podcast_title")
-            ).join(Podcast, Podcast.id == Episode.podcast_id).where(Episode.id == episode_id)
+            stmt = select(
+                    Episode,
+                    Podcast.author
+                ).join(
+                    Episode.podcast
+                ).where(
+                    and_(
+                    Episode.host_questions != [],
+                    Episode.question_answers != []
+                )).limit(5)
+            results = await session.execute(stmt)
+            return results.all()
+                
 
-            episode_row = (await session.execute(episode_stmt)).first()
-            if not episode_row:
-                return None
-
-            # Run all metric queries concurrently
-            word_count, utter_count, avg_dur, chapter_count = await asyncio.gather(
-                get_word_count(session, episode_id),
-                get_utterance_count(session, episode_id),
-                get_avg_utterance_duration(session, episode_id),
-                get_chapter_count(session, episode_id)
-            )
-            print(word_count, utter_count, avg_dur/60, chapter_count)
-
-            return {
-                "podcast_title": episode_row.podcast_title,
-                "episode_title": episode_row.title,
-                "duration_min": round(episode_row.duration / 60, 1),
-                "word_count": word_count,
-                "utterance_count": utter_count,
-                "avg_utterance_duration_sec": avg_dur,
-                "chapter_count": chapter_count,
-            }
+            
 
                 

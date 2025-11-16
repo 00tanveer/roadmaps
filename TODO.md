@@ -1,8 +1,8 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
-- [ ] Index questions and questions-answer pairs with chromadb
-- [ ] Save questions and question-answer pairs to episode tables 
+- [ ] Update Indexer service. Index questions and questions-answer pairs with chromadb
+- [ ] Save questions and question-answer pairs to episode tables  DONE
 - [ ] Switch to Postgresql and adapt sqlalchemy models to better complement pg DONE
 - [ ] Set up sqlalchemy and companion alembic for ORM and migrations
 - [ ] Successfully retrieve question utterances and question/answer pairs from available transcripts DONE

@@ -1,93 +1,171 @@
-import faiss 
-import requests
-import numpy as np
-import json 
-from tqdm import tqdm
-import os
-import hashlib
+import chromadb
+import json
+from datetime import datetime
+from app.db.session import AsyncSessionLocal
+from app.db.data_models.episode import Episode 
+from app.db.data_models.podcast import Podcast
+from sqlalchemy import select, and_
+from chromadb.utils.embedding_functions.ollama_embedding_function import (
+    OllamaEmbeddingFunction,
+)
 
 
 class Indexer:
     '''This Indexer class has the abilities to index
-        anything inside the Stories project.
+        anything inside the Stories project with ChromaDB
     Args:
-        data_dir: Root data folder path.
+        chroma_db_dir: Root data folder path.
         subfolder: Subfolder containing JSON files with questions.
         use_remote: Whether to use remote Ollama host.
     '''
     # Indexer class attributes
+    CHROMA_HOST = 'localhost'
     EMBEDDING_MODEL = 'mxbai-embed-large:latest'
     OLLAMA_HOST_LOCAL = 'http://localhost:11434'
     OLLAMA_HOST_REMOTE = 'https://ovb1wujcy8gupy-11434.proxy.runpod.net'
-    
-    def __init__(self, data_dir="data", subfolder="content_json", use_remote=False):
-        self.data_dir = data_dir
-        self.folder_path = os.path.join(data_dir, subfolder)
-        self.index_path = os.path.join(data_dir, "questions.index")
 
-        if not os.path.exists(self.folder_path):
-            raise FileNotFoundError(f"❌ Folder not found: {self.folder_path}")
-        
-        self.filepaths = [
-            os.path.join(self.folder_path, f)
-            for f in os.listdir(self.folder_path)
-            if os.path.isfile(os.path.join(self.folder_path, f))
-        ]
-        self.host = self.OLLAMA_HOST_REMOTE if use_remote else self.OLLAMA_HOST_LOCAL
-        self.questions = []
-        self.questions_index = None
     
-    def load_questions(self):
-        """Reads all questions from JSON files."""
-        questions = []
-        for path in self.filepaths:
-            with open(path, "r") as f:
-                data = json.load(f)
-                for block in data['blocks']:
-                    questions.append(block["question_text"])
-        self.questions = questions
-        print(f"📦 Loaded {len(self.questions)} questions.")
-        return self.questions
-    
-    def get_embedding(self, text, model=None):
-        model = model or self.EMBEDDING_MODEL
-        response = requests.post(
-            f"{self.host}/api/embeddings",
-            json={"model": model, "prompt": text}
+    def __init__(self):
+        self.chroma_client = chromadb.HttpClient(host=self.CHROMA_HOST, port=8000)
+        self.ollama_ef = OllamaEmbeddingFunction(
+            url=self.OLLAMA_HOST_LOCAL,
+            model_name = self.EMBEDDING_MODEL
         )
-        return np.array(response.json()["embedding"]).astype('float32')
+        self.chroma_coll_config = {
+            "hnsw": {
+                "space": "cosine",
+                "ef_construction": 200,
+                "ef_search": 10,
+            },
+            "embedding_function": self.ollama_ef
+        }
+        # collections
+        self.questions_collection_name = "qa_collection"
+        self.qa_collection_name = "episode_qa_pairs"
+    
+    async def iter_questions_qa(self):
+        """Reads all questions from JSON files."""
+        async with AsyncSessionLocal() as session:
+            async with session.begin():
+                stmt = select(
+                    Episode,
+                    Podcast.author
+                ).join(
+                    Episode.podcast
+                ).where(
+                    and_(
+                    Episode.host_questions != [],
+                    Episode.question_answers != []
+                )
+                )
+                stream = await session.stream(stmt)
 
-    def build_questions_index(self):
-        """Generates embeddings and builds FAISS index."""
-        questions = self.load_questions()
-        print(questions)
-        embeddings = []
-        for q in tqdm(questions, desc=f"Generating embeddings for question"):
-            print(q)
-            vec = self.get_embedding(q)
-            if vec is not None and np.isfinite(vec).all():
-                embeddings.append(vec)
-            else:
-                print(f"⚠️ Skipping invalid embedding for question: {q[:50]}...")
+                async for row in stream:
+                    episode, author = row
+                    yield {
+                        "id": episode.id,
+                        "author": author,
+                        "title": episode.title,
+                        "podcast_url": episode.podcast_url,
+                        "episode_image": episode.episode_image,
+                        "enclosure_url": episode.enclosure_url,
+                        "duration": episode.duration,
+                        "date_published": episode.date_published,
+                        "questions": episode.host_questions,
+                        "question_answers": episode.question_answers,
+                    }
+    
+    async def iter_questions_qa_batches(self, batch_size=50):
+        batch = []
+        async for episode in self.iter_questions_qa():
+            batch.append(episode)
+            if len(batch)>=batch_size:
+                yield batch
+                batch = []
+        if batch:
+            yield batch
+        
+    def init_chroma_collection(self):
+        self.questions_collection = self.chroma_client.get_or_create_collection(
+            name=self.questions_collection_name,
+            configuration=self.chroma_coll_config,
+            metadata = {
+                "description": "Questions asked by the podcast host in every episode.",
+                "created": str(datetime.now())
+            }
+        )
 
-        embeddings = np.array(embeddings, dtype=np.float32)
-       # Normalize vectors for cosine similarity
-        faiss.normalize_L2(embeddings)
-        # Build FAISS index
-        dim = embeddings.shape[1]
-        index = faiss.IndexFlatIP(dim)  # cosine similarity
-        index.add(embeddings)
+        self.question_answer_collection = self.chroma_client.get_or_create_collection(
+            name=self.qa_collection_name,
+            configuration=self.chroma_coll_config,
+            metadata = {
+                "description": "Question-answer exchanges in every podcast episode.",
+                "created": str(datetime.now())
+            }
+        )
+    def sanitize_metadata(self, meta: dict):
+        clean = {}
+        for k, v in meta.items():
+            if v is None:
+                clean[k] = ""
+                continue
 
-        self.questions_index = index
-        faiss.write_index(index, "data/questions.index")
+            if isinstance(v, (str, int, float, bool)):
+                clean[k] = v
+                continue
 
-        print(f"💾 Saved FAISS index with {index.ntotal} vectors.")
+            if isinstance(v, datetime):
+                clean[k] = v.isoformat()
+                continue
 
-    def load_questions_index(self, path="data/questions.index"):
-        """Loads FAISS index from disk."""
-        path = path or self.index_path
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"❌ Index file not found: {path}")
-        self.questions_index = faiss.read_index(path)
-        print(f"✅ Loaded index from {path}")
-        return self.questions_index
+            if isinstance(v, bytes):
+                clean[k] = v.decode("utf-8", errors="ignore")
+                continue
+
+            if isinstance(v, (list, dict)):
+                clean[k] = json.dumps(v)
+                continue
+
+            clean[k] = str(v)
+
+        return clean
+    async def upsert_qa_batch(self, episodes_batch):
+        questions_collection = self.chroma_client.get_collection(name=self.questions_collection_name)
+        ids = []
+        documents = []
+        metadatas = []
+
+        for episode in episodes_batch:
+            doc = {
+                "questions": episode["questions"],
+                "question_answers": episode["question_answers"]
+            }
+
+            metadata = {
+                k: v for k, v in episode.items()
+                if k not in ("questions", "question_answers")
+            }
+
+            clean_metadata = self.sanitize_metadata(metadata)
+
+            ids.append(episode["id"])
+            documents.append(json.dumps(doc))
+            metadatas.append(clean_metadata)
+
+        # ONE network call, not 50
+        questions_collection.add(
+            ids=ids,
+            documents=documents,
+            metadatas=metadatas
+        )
+    async def upsert_qa_collection(self, batch_size=5):
+        async for batch in self.iter_questions_qa_batches(batch_size=batch_size):
+            await self.upsert_qa_batch(batch)
+
+    def delete_collection(self, collection_name):
+        try:
+            self.chroma_client.delete_collection(collection_name)
+            print(f"Deleted collection: {collection_name}")
+        except Exception as e:
+            print(f"Error: {e}")
+            
