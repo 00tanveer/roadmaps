@@ -8,7 +8,6 @@ from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 from app.db.data_models.transcript_utterance import TranscriptUtterance
 from app.db.session import AsyncSessionLocal
-from app.db.data_models.podcast import Podcast
 from app.db.data_models.episode import Episode
 from app.db.data_models.transcript import Transcript
 from app.language_models.question_detector.src.infer import InferenceModel
@@ -34,7 +33,7 @@ sem = asyncio.Semaphore(10)
 async def questions_from_one_episode(ep, questions_model):
     async with sem:
         try:
-            print("\nTITLE:", ep.title)
+            print("\nTITLE:", ep.title, ep.id)
             transcript = ep.transcript
             if transcript is None:
                 print(f"  ❌ No transcript for episode {ep.id}")
@@ -43,6 +42,9 @@ async def questions_from_one_episode(ep, questions_model):
             host_questions = []
             question_answers = []
             for i,u in enumerate(transcript.utterances):
+                if i == len(transcript.utterances) - 1:
+                    # print(f"⚠️ Last utterance is a question; skipping answer for episode {ep.id}")
+                    continue
                 if u.speaker != guest and is_question(u.text, questions_model):
                     question = {
                         "start": u.start,
@@ -80,9 +82,6 @@ async def extract_questions():
             )
         )).scalars().all()
 
-        # detach objects so they are usable safely in workers
-        for ep in episodes:
-            session.expunge(ep)
         tasks = [
             questions_from_one_episode(ep, questions_model)
             for ep in episodes
@@ -93,6 +92,7 @@ async def save_question_results(results):
     async with AsyncSessionLocal() as session:
         async with session.begin():
             for r in results:
+                print("Host questions in r:", r["episode_id"], r["host_questions"][:30])
                 ep = await session.get(Episode, r["episode_id"])
                 ep.host_questions = r["host_questions"]
                 ep.question_answers = r["question_answers"]
@@ -117,7 +117,7 @@ async def get_episode_data():
 
 # # print(f"Extracted a total of host {len(all_questions)} questions from {len(transcript_files[:1])} transcripts.")
 if __name__ == "__main__":
-    asyncio.run(get_episode_data())
-    # asyncio.run(main())
+    # asyncio.run(get_episode_data())
+    asyncio.run(main())
 
 
