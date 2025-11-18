@@ -5,3 +5,11 @@ stories_env/
 node_modules/
 data/
 app/language_models/question_detector/models/
+test.py
+chroma/
+chroma__db/
+chroma_db/
+*.chroma
+*.duckdb
+*.sqlite
+*chroma.sqlite3

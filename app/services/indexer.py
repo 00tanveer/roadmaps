@@ -1,6 +1,8 @@
 import chromadb
 import json
+import uuid
 from datetime import datetime
+from app.api.runpod_serverless import infinity_embeddings
 from app.db.session import AsyncSessionLocal
 from app.db.data_models.episode import Episode 
 from app.db.data_models.podcast import Podcast
@@ -8,7 +10,8 @@ from sqlalchemy import select, and_
 from chromadb.utils.embedding_functions.ollama_embedding_function import (
     OllamaEmbeddingFunction,
 )
-
+from tqdm import tqdm
+import aiohttp
 
 class Indexer:
     '''This Indexer class has the abilities to index
@@ -20,86 +23,29 @@ class Indexer:
     '''
     # Indexer class attributes
     CHROMA_HOST = 'localhost'
-    EMBEDDING_MODEL = 'mxbai-embed-large:latest'
-    OLLAMA_HOST_LOCAL = 'http://localhost:11434'
-    OLLAMA_HOST_REMOTE = 'https://ovb1wujcy8gupy-11434.proxy.runpod.net'
-
+    EMBEDDING_MODEL = 'BAAI/bge-base-en-v1.5'
     
     def __init__(self):
         self.chroma_client = chromadb.HttpClient(host=self.CHROMA_HOST, port=8000)
-        self.ollama_ef = OllamaEmbeddingFunction(
-            url=self.OLLAMA_HOST_LOCAL,
-            model_name = self.EMBEDDING_MODEL
-        )
+        self.embeddings_generator = infinity_embeddings(self.EMBEDDING_MODEL)
         self.chroma_coll_config = {
             "hnsw": {
                 "space": "cosine",
                 "ef_construction": 200,
                 "ef_search": 10,
-            },
-            "embedding_function": self.ollama_ef
+            }
         }
         # collections
-        self.questions_collection_name = "qa_collection"
         self.qa_collection_name = "episode_qa_pairs"
+        self.qa_collection = None
+        self.batch_size = 50
     
-    async def iter_questions_qa(self):
-        """Reads all questions from JSON files."""
-        async with AsyncSessionLocal() as session:
-            async with session.begin():
-                stmt = select(
-                    Episode,
-                    Podcast.author
-                ).join(
-                    Episode.podcast
-                ).where(
-                    and_(
-                    Episode.host_questions != [],
-                    Episode.question_answers != []
-                )
-                )
-                stream = await session.stream(stmt)
-
-                async for row in stream:
-                    episode, author = row
-                    yield {
-                        "id": episode.id,
-                        "author": author,
-                        "title": episode.title,
-                        "podcast_url": episode.podcast_url,
-                        "episode_image": episode.episode_image,
-                        "enclosure_url": episode.enclosure_url,
-                        "duration": episode.duration,
-                        "date_published": episode.date_published,
-                        "questions": episode.host_questions,
-                        "question_answers": episode.question_answers,
-                    }
-    
-    async def iter_questions_qa_batches(self, batch_size=50):
-        batch = []
-        async for episode in self.iter_questions_qa():
-            batch.append(episode)
-            if len(batch)>=batch_size:
-                yield batch
-                batch = []
-        if batch:
-            yield batch
-        
     def init_chroma_collection(self):
-        self.questions_collection = self.chroma_client.get_or_create_collection(
-            name=self.questions_collection_name,
-            configuration=self.chroma_coll_config,
-            metadata = {
-                "description": "Questions asked by the podcast host in every episode.",
-                "created": str(datetime.now())
-            }
-        )
-
-        self.question_answer_collection = self.chroma_client.get_or_create_collection(
+        self.qa_collection = self.chroma_client.get_or_create_collection(
             name=self.qa_collection_name,
             configuration=self.chroma_coll_config,
             metadata = {
-                "description": "Question-answer exchanges in every podcast episode.",
+                "description": "Question-answer exchanges in every podcast episode. Metadata includes timestamps",
                 "created": str(datetime.now())
             }
         )
@@ -113,54 +59,152 @@ class Indexer:
             if isinstance(v, (str, int, float, bool)):
                 clean[k] = v
                 continue
-
             if isinstance(v, datetime):
                 clean[k] = v.isoformat()
                 continue
-
             if isinstance(v, bytes):
                 clean[k] = v.decode("utf-8", errors="ignore")
                 continue
-
             if isinstance(v, (list, dict)):
                 clean[k] = json.dumps(v)
                 continue
-
             clean[k] = str(v)
 
         return clean
-    async def upsert_qa_batch(self, episodes_batch):
-        questions_collection = self.chroma_client.get_collection(name=self.questions_collection_name)
-        ids = []
-        documents = []
-        metadatas = []
+    
+    async def load_all_question_episodes(self):
+        episodes = []
+        async with AsyncSessionLocal() as session:
+            async with session.begin():
+                stmt = (
+                    select(Episode, Podcast.author)
+                    .join(Episode.podcast)
+                    .where(
+                        and_(
+                            Episode.host_questions != [],
+                            Episode.question_answers != []
+                        )
+                    )
+                )
+                result = await session.execute(stmt)
+                rows = result.all()
 
-        for episode in episodes_batch:
-            doc = {
-                "questions": episode["questions"],
-                "question_answers": episode["question_answers"]
-            }
+                for row in rows:
+                    episode, author = row
+                    episodes.append({
+                        "id": episode.id,
+                        "author": author,
+                        "title": episode.title,
+                        "podcast_url": episode.podcast_url,
+                        "episode_image": episode.episode_image,
+                        "enclosure_url": episode.enclosure_url,
+                        "duration": episode.duration,
+                        "date_published": episode.date_published,
+                        "questions": episode.host_questions,
+                        "question_answers": episode.question_answers,
+                    })
+        return episodes
+    
+    async def embed_batch(self, docs):
+        """
+        Call Runpod's Infinity Embeddings Serverless API API to embed a batch of documents.
+        """
+        res = self.embeddings_generator.get_embeddings(docs)
 
-            metadata = {
+        embeddings = res.get("embeddings")
+        if embeddings is None:
+            raise RuntimeError("❌ Runpod returned no embeddings field.")
+
+        return embeddings
+    def filtered_episodes_to_index(self, all_episodes, qa_collection):
+        existing = qa_collection.get(include=["metadatas"])
+
+        indexed_episode_ids = set(
+            m["id"] for m in existing.get("metadatas", []) if m and "id" in m
+        )
+        episodes_to_process = [
+            ep for ep in all_episodes
+            if ep["id"] not in indexed_episode_ids
+        ]
+        episodes_to_process
+        return episodes_to_process
+
+    async def upsert_qa_collection(self):
+        print("Starting QA indexing...")
+
+        if self.qa_collection is None:
+            self.init_chroma_collection()
+
+        all_episodes = await self.load_all_question_episodes()
+        print("Loaded", len(all_episodes), "episodes")
+
+        episodes = self.filtered_episodes_to_index(all_episodes, self.qa_collection)
+        print("Episodes remaining to index: ", len(episodes))
+        total_qa = sum(len(ep["question_answers"]) for ep in episodes)
+        print(f"Total question-answer pairs to index: {total_qa}")
+
+        BATCH_SIZE = 100   # sweet spot for Ollama performance
+
+        batch_ids = []
+        batch_docs = []
+        batch_metas = []
+
+        for episode in tqdm(episodes, desc="Processing episodes"):
+            episode_meta_raw = {
                 k: v for k, v in episode.items()
                 if k not in ("questions", "question_answers")
             }
+            episode_meta = self.sanitize_metadata(episode_meta_raw)
 
-            clean_metadata = self.sanitize_metadata(metadata)
+            questions = episode["questions"]
+            qa_pairs = episode["question_answers"]
+            print(f"In episode {episode['id']}, there are {len(qa_pairs)} qa pairs.")
+            for i, qa in enumerate(qa_pairs):
+                q = qa.get("question", "")
+                a = qa.get("answer", "")
 
-            ids.append(episode["id"])
-            documents.append(json.dumps(doc))
-            metadatas.append(clean_metadata)
+                q_item = questions[i]
+                print("q_item: ", q_item)
+                start = q_item.get("start")
+                end   = q_item.get("end")
 
-        # ONE network call, not 50
-        questions_collection.add(
-            ids=ids,
-            documents=documents,
-            metadatas=metadatas
-        )
-    async def upsert_qa_collection(self, batch_size=5):
-        async for batch in self.iter_questions_qa_batches(batch_size=batch_size):
-            await self.upsert_qa_batch(batch)
+                qa_id = str(uuid.uuid4())
+                doc = json.dumps({"question": q, "answer": a})
+
+                metadata = dict(episode_meta)
+                metadata["question"] = q
+                metadata["answer"] = a
+                metadata["start"] = float(start) if start is not None else None
+                metadata["end"] = float(end) if end is not None else None
+                metadata = self.sanitize_metadata(metadata)
+
+                batch_ids.append(qa_id)
+                batch_docs.append(doc)
+                batch_metas.append(metadata)
+
+                # 🚀 When batch is full → embed once → upsert once
+                if len(batch_ids) >= BATCH_SIZE:
+                    embeddings = await self.embed_batch(batch_docs)
+                    self.qa_collection.upsert(
+                        ids=batch_ids,
+                        embeddings=embeddings,
+                        documents=batch_docs,
+                        metadatas=batch_metas
+                    )
+                    batch_ids, batch_docs, batch_metas = [], [], []
+
+        # --- Flush last batch ---
+        if batch_ids:
+            embeddings = await self.embed_batch(batch_docs)
+            self.qa_collection.upsert(
+                ids=batch_ids,
+                embeddings=embeddings,
+                documents=batch_docs,
+                metadatas=batch_metas
+            )
+
+        print("🎉 Finished indexing all QA pairs!")
+        print("Total items in collection:", self.qa_collection.count())
 
     def delete_collection(self, collection_name):
         try:

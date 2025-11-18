@@ -1,6 +1,7 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
+- [ ] Create an Ollama embeddings serverless endpoint
 - [ ] Update Indexer service. Index questions and questions-answer pairs with chromadb
 - [ ] Save questions and question-answer pairs to episode tables  DONE
 - [ ] Switch to Postgresql and adapt sqlalchemy models to better complement pg DONE
@@ -28,6 +29,7 @@
 - [ ] Generate micro-blogs with AI
 
 ## Hot ideas - parked
+- [ ] Questions from audience -> send to podcast authors 
 - [ ] Mashups - Make your own hour long pod mashup of brilliant bits from thousands of podcasts
 - [ ] Get words from different podcast episodes and string them together to make rap songs
 

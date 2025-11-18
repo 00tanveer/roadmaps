@@ -23,7 +23,7 @@ from app.db.data_models.transcript_utterance import TranscriptUtterance
 from app.db.data_models.transcript_word import TranscriptWord
 
 # sqlalchemy 
-from sqlalchemy import select, func, distinct, and_
+from sqlalchemy import select, func, and_, text
 
 
 def get_version():
@@ -186,7 +186,6 @@ def __map_item_to_episode(item: Dict) -> Episode:
         enclosure_url=item.get("enclosureUrl") or (item.get("enclosure", {}).get("url") if isinstance(item.get("enclosure"), dict) else None),
         duration=int(item.get("duration") or 0),
         date_published=date_published,
-        host_questions=json.dumps(item.get("hostQuestions") or []),  # placeholder: store list as JSON string
     )
 def __map_item_to_transcript(item: Dict) -> Transcript:
     """
@@ -221,7 +220,7 @@ def __map_item_to_transcript_utterance(item: Dict) -> TranscriptChapter:
         transcript_id=item.get("transcriptId"),
         start=item.get("start"),
         end=item.get("end"),
-        confidence=item.get("confidence"),
+        confidence=float(item.get("confidence")),
         speaker=item.get("speaker"),
         text=item.get("text"),
     )
@@ -234,7 +233,7 @@ def __map_item_to_transcript_word(item: Dict) -> TranscriptWord:
         transcript_id=item.get("transcriptId"),
         start=item.get("start"),
         end=item.get("end"),
-        confidence=item.get("confidence"),
+        confidence=float(item.get("confidence")),
         speaker=item.get("speaker"),
         text=item.get("text"),
     )
@@ -414,7 +413,71 @@ async def read_episode_data() -> Dict:
             results = await session.execute(stmt)
             return results.all()
                 
+async def update_confidence_from_json():
+    """
+    Update only confidence fields for transcript_utterance and transcript_word.
+    Assumes t_dict contains the original data with float confidence values.
+    """
+    transcript_file_paths = os.listdir("data/transcripts/")
+    transcripts = []
+    for path in transcript_file_paths:
+        with open(f"data/transcripts/{path}", 'r') as f:
+            transcript = json.load(f)
+            transcripts.append(transcript)
+    async with AsyncSessionLocal() as session:
+        for t in transcripts:
+            tid = t.get("id")
+            if not tid:
+                print("⚠️ Transcript missing id in JSON")
+                continue
+
+            # ----- WORDS -----
+            for w in t.get("words", []):
+                await session.execute(
+                    text("""
+                        UPDATE transcript_words
+                        SET confidence = :confidence
+                        WHERE transcript_id = :transcript_id
+                        AND start = :start
+                        AND "end" = :end
+                        AND text = :text
+                        AND speaker = :speaker
+                    """),
+                    {
+                        "transcript_id": tid,
+                        "start": w["start"],
+                        "end": w["end"],
+                        "text": w["text"],
+                        "speaker": w["speaker"],
+                        "confidence": float(w.get("confidence", 0.0)),
+                    }
+                )
+
+            # ----- UTTERANCES -----
+            for u in t.get("utterances", []):
+                await session.execute(
+                    text("""
+                        UPDATE transcript_utterance
+                        SET confidence = :confidence
+                        WHERE transcript_id = :transcript_id
+                        AND start = :start
+                        AND "end" = :end
+                        AND text = :text
+                        AND speaker = :speaker
+                    """),
+                    {
+                        "transcript_id": tid,
+                        "start": u["start"],
+                        "end": u["end"],
+                        "text": u["text"],
+                        "speaker": u["speaker"],
+                        "confidence": float(u.get("confidence", 0.0)),
+                    }
+                )
+
+            print(f"Updated transcript {tid}")
+
+        await session.commit()
+        print("🎉 All confidence values restored successfully!")
 
             
-
-                
