@@ -1,6 +1,6 @@
 # app/db/models/transcript_utterance.py
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Integer, ForeignKey, DateTime, func
+from sqlalchemy import Integer, ForeignKey, DateTime, func
 from app.db.base import Base
 from datetime import datetime
 
@@ -13,7 +13,7 @@ class TranscriptUtterance(Base):
     transcript_id: Mapped[str] = mapped_column(ForeignKey("transcripts.id", ondelete="CASCADE"))
     start: Mapped[int]
     end: Mapped[int]
-    confidence: Mapped[int]
+    confidence: Mapped[float]
     speaker: Mapped[str]
     text: Mapped[str]
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())

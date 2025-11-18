@@ -13,7 +13,7 @@ class TranscriptWord(Base):
     transcript_id: Mapped[str] = mapped_column(ForeignKey("transcripts.id", ondelete="CASCADE"))
     start: Mapped[int]
     end: Mapped[int]
-    confidence: Mapped[int]
+    confidence: Mapped[float]
     speaker: Mapped[str]
     text: Mapped[str]
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
