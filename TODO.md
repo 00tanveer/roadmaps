@@ -1,8 +1,9 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
-- [ ] Create an Ollama embeddings serverless endpoint
-- [ ] Update Indexer service. Index questions and questions-answer pairs with chromadb
+- [ ] Rewrite the retrieval service
+- [ ] Create an Infinity embeddings serverless endpoint on Runpod DONE
+- [ ] Update Indexer service. Index questions and questions-answer pairs with chromadb DONE
 - [ ] Save questions and question-answer pairs to episode tables  DONE
 - [ ] Switch to Postgresql and adapt sqlalchemy models to better complement pg DONE
 - [ ] Set up sqlalchemy and companion alembic for ORM and migrations
@@ -15,7 +16,7 @@
 - [ ] Use the AssemblyAI API for transcribing all episodes ~125 OUT OF ~200 DONE (out of AAI credits)
 - [ ] Make connection between Podplayer and Story Results (QA pair cards) seamless
 - [ ] Add toolbar (play, insights,) to QA pair cards
-- [ ] Write the backend service for pulling podcast data with Podcastindex API. Enrich curated collection of 20 episodes (The Perterman Pod) with an automated script
+- [ ] Write the backend service for pulling podcast data with Podcastindex API. Enrich curated collection of 20 episodes (The Perterman Pod) with an automated script DONE
 ## v0.0.1 (Current) ✓
 - [x] Search interface
 - [x] Storypod Player

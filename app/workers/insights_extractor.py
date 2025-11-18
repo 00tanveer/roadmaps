@@ -1,6 +1,5 @@
 import json
 import requests
-import ollama
 from tqdm import tqdm
 import os
 from pydantic import BaseModel

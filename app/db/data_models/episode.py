@@ -5,7 +5,6 @@ from sqlalchemy import String, DateTime, ForeignKey, func
 from sqlalchemy.dialects.postgresql import JSONB
 from app.db.base import Base
 from datetime import datetime
-import sqlalchemy as sa
 
 class Episode(Base):
     __tablename__ = "episodes"

@@ -1,12 +1,8 @@
 # Load the transcript object into memory and study them
 # from app.language_models.question_detector.src.infer import InferenceModel
-import json 
-import os
-from typing import Dict
 import asyncio
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
-from app.db.data_models.transcript_utterance import TranscriptUtterance
 from app.db.session import AsyncSessionLocal
 from app.db.data_models.episode import Episode
 from app.db.data_models.transcript import Transcript

@@ -7,11 +7,7 @@ from app.db.session import AsyncSessionLocal
 from app.db.data_models.episode import Episode 
 from app.db.data_models.podcast import Podcast
 from sqlalchemy import select, and_
-from chromadb.utils.embedding_functions.ollama_embedding_function import (
-    OllamaEmbeddingFunction,
-)
 from tqdm import tqdm
-import aiohttp
 
 class Indexer:
     '''This Indexer class has the abilities to index

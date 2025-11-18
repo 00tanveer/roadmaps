@@ -1,5 +1,4 @@
 import asyncio
-from datetime import date
 import hashlib
 import json
 import requests
@@ -11,7 +10,7 @@ import functools
 from datetime import datetime
 
 # typing
-from typing import Dict, Optional, List
+from typing import Dict, List
 
 # Async DB session 
 from app.db.session import AsyncSessionLocal

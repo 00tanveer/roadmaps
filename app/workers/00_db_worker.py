@@ -8,7 +8,6 @@ Use this to:
 import asyncio
 from app.db.session import AsyncSessionLocal
 from app.db.data_models.podcast import Podcast
-from app.db.data_models.episode import Episode
 import json
 from app.services.podcasts import save_podcast
 from app.services.podcasts import save_episodes
