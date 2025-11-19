@@ -11,6 +11,11 @@ from app.language_models.question_detector.src.infer import InferenceModel
 from app.services.podcasts import read_episode_data
 
 
+async def main():
+    results = await extract_questions()
+    # await extract_questions()
+    await save_question_results(results)
+    print("🎉 All questions & answers saved!")
 
 def is_question(text: str, questions_model) -> bool:
     if len(text.split()) > 100:
@@ -20,16 +25,12 @@ def is_question(text: str, questions_model) -> bool:
         return True 
     return False
 
-async def main():
-    results = await extract_questions()
-    await save_question_results(results)
-    print("🎉 All questions & answers saved!")
 
 sem = asyncio.Semaphore(10)
-async def questions_from_one_episode(ep, questions_model):
+async def questions_from_one_episode(ep, questions_model, i):
     async with sem:
         try:
-            print("\nTITLE:", ep.title, ep.id)
+            print(f"\nNo. {i} TITLE:", ep.title, ep.id)
             transcript = ep.transcript
             if transcript is None:
                 print(f"  ❌ No transcript for episode {ep.id}")
@@ -72,15 +73,20 @@ async def extract_questions():
     questions_model = InferenceModel()
     async with AsyncSessionLocal() as session:
         episodes = (await session.execute(
-            select(Episode).options(
+            select(Episode)
+            .join(Episode.transcript)
+            .options(
                 selectinload(Episode.transcript)
                 .selectinload(Transcript.utterances)
             )
         )).scalars().all()
-
+        print(len(episodes))
+        episodes = sorted(episodes, key=lambda e: e.id)
+        for ep in episodes:
+            print(ep.id)
         tasks = [
-            questions_from_one_episode(ep, questions_model)
-            for ep in episodes
+            questions_from_one_episode(ep, questions_model, i)
+            for i, ep in enumerate(episodes)
         ]
     results = await asyncio.gather(*tasks, return_exceptions=True)
     return [r for r in results if r is not None]
@@ -88,7 +94,9 @@ async def save_question_results(results):
     async with AsyncSessionLocal() as session:
         async with session.begin():
             for r in results:
-                print("Host questions in r:", r["episode_id"], r["host_questions"][:30])
+                # print("Host questions in r:", r["episode_id"], r["host_questions"][:30])
+                if not r["host_questions"]:
+                    continue
                 ep = await session.get(Episode, r["episode_id"])
                 ep.host_questions = r["host_questions"]
                 ep.question_answers = r["question_answers"]
@@ -117,3 +125,29 @@ if __name__ == "__main__":
     asyncio.run(main())
 
 
+# total questions:  5333
+# Questions:
+#   total: 5333
+#   unique: 1757
+#   duplicates: 3576
+
+# QA Pairs:
+#   total: 5320
+#   unique: 2407
+#   duplicates: 2913
+
+# data stream
+# 243 episodes
+# 121 transcripts
+
+# first 10 episodes w/ trascripts sorted 
+# 28356570570
+# 29292900154
+# 29521002925
+# 29522808496
+# 29818166796
+# 30451431305
+# 30831604383
+# 31641430512
+# 32218939088
+# 32568857117

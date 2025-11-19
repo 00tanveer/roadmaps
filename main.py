@@ -1,22 +1,22 @@
 # main.py
-from app.services.indexer import Indexer
 from app.services.retrieval import Retriever
-import numpy as np
+import uuid
+import json
 
 def main():
-    # Initialize the Indexer
-    indexer = Indexer(
-        data_dir="data",
-        subfolder="content_json",
-        use_remote=False  # use Ollama local embedding endpoint
-    )
-    # Try to load index; if not found, build one
-    try:
-        questions_index = indexer.load_questions_index()
-        print("✅ Index loaded successfully.")
-    except FileNotFoundError:
-        print("⚠️ No existing index found. Building new index...")
-        indexer.build_questions_index()
+    # # Initialize the Indexer
+    # indexer = Indexer(
+    #     data_dir="data",
+    #     subfolder="content_json",
+    #     use_remote=False  # use Ollama local embedding endpoint
+    # )
+    # # Try to load index; if not found, build one
+    # try:
+    #     questions_index = indexer.load_questions_index()
+    #     print("✅ Index loaded successfully.")
+    # except FileNotFoundError:
+    #     print("⚠️ No existing index found. Building new index...")
+    #     indexer.build_questions_index()
 
     # def cosine(a, b): return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
@@ -26,13 +26,27 @@ def main():
     # v2 = indexer.get_embedding(q2)
     # print("Cosine:", cosine(v1, v2))
     # Quick test query
-    query = "How to get better in writing?"
+    
+    
     retriever = Retriever()
-    results = retriever.search(query, top_k=10)
-
-    print(f"\nTop results for: {query}")
-    for r in results:
-        print(f"- {r['question']} (score: {r['similarity']:.3f})")
+    retriever.count_duplicates()
+    queries = [
+        "How to get better in writing?",
+        "What are some regrets that you have?",
+        "What are the challenges of working at Meta?",
+        "Tell me a funny story"
+    ]
+    for q in queries:
+        results = retriever.search(q)
+        file_id = uuid.uuid4()
+        file_path = "search_results/"+str(file_id)+".json"
+        dump = {
+            "query": q,
+            "results": results
+        }
+        
+        with open(file_path, 'w') as json_file:
+            json.dump(dump, json_file, indent=4)
 
 if __name__ == "__main__":
     main()

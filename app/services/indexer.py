@@ -6,8 +6,10 @@ from app.api.runpod_serverless import infinity_embeddings
 from app.db.session import AsyncSessionLocal
 from app.db.data_models.episode import Episode 
 from app.db.data_models.podcast import Podcast
+from chromadb import Documents, EmbeddingFunction, Embeddings
 from sqlalchemy import select, and_
 from tqdm import tqdm
+
 
 class Indexer:
     '''This Indexer class has the abilities to index
@@ -22,7 +24,7 @@ class Indexer:
     EMBEDDING_MODEL = 'BAAI/bge-base-en-v1.5'
     
     def __init__(self):
-        self.chroma_client = chromadb.HttpClient(host=self.CHROMA_HOST, port=8000)
+        self.chroma_client = chromadb.HttpClient(host=self.CHROMA_HOST, port=8001)
         self.embeddings_generator = infinity_embeddings(self.EMBEDDING_MODEL)
         self.chroma_coll_config = {
             "hnsw": {
@@ -45,6 +47,8 @@ class Indexer:
                 "created": str(datetime.now())
             }
         )
+    def get_collection(self, name):
+        return self.chroma_client.get_collection(name)
     def sanitize_metadata(self, meta: dict):
         clean = {}
         for k, v in meta.items():
@@ -160,7 +164,7 @@ class Indexer:
                 a = qa.get("answer", "")
 
                 q_item = questions[i]
-                print("q_item: ", q_item)
+                # print("q_item: ", q_item)
                 start = q_item.get("start")
                 end   = q_item.get("end")
 
