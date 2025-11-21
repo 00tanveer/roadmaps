@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stories-backend
+    restart: always
+    environment:
+      CHROMA_HOST: chroma
+      CHROMA_PORT: 8001
+    depends_on:
+      - chroma
+    ports:
+      - "8000:8000"   # expose API if needed
+
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: stories-chroma
+    restart: always
+    environment:
+      CHROMA_DB_IMPL: "duckdb+parquet"
+      CHROMA_PERSIST_DIRECTORY: /chroma-data
+    volumes:
+      - ./chroma:/chroma-data
+    ports:
+      - "8001:8000"   # optional, useful for debugging
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: stories-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

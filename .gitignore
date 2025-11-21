@@ -13,3 +13,6 @@ chroma_db/
 *.duckdb
 *.sqlite
 *chroma.sqlite3
+hot_commands.txt
+questions.txt
+search_results/

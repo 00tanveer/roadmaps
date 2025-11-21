@@ -1,9 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from app.services.indexer import Indexer
 from app.services.retrieval import Retriever
 import uvicorn
-import threading
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Stories Search API", version="1.0")
@@ -16,20 +14,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# ---- Initialize the Indexer (singleton)
-indexer = Indexer(data_dir="data", subfolder="content_json", use_remote=False)
-retriever = Retriever(data_dir="data", subfolder="content_json")
+# ---- Initialize the Retriever (singleton)
+
+retriever = Retriever()
 # Try loading an existing index; fallback to rebuild
-try:
-    indexer.load_questions_index()
-except FileNotFoundError:
-    print("⚠️ No existing index found, building a new one...")
-    threading.Thread(target=indexer.build_questions_index).start()
+
 
 # ---- Request/Response Models ----
 class QueryRequest(BaseModel):
     query: str
-    top_k: int = 10
+    top_k: int = 20
 
 # ---- Routes ----
 @app.get("/")
@@ -46,13 +40,6 @@ def search(request: QueryRequest):
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/reindex")
-def reindex():
-    """Rebuilds the FAISS index from source JSON files."""
-    threading.Thread(target=indexer.build_index).start()
-    return {"message": "Index rebuilding started in background."}
 
 
 if __name__ == "__main__":

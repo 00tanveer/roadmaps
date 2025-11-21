@@ -1,7 +1,14 @@
 # Stories - Development Roadmap
 
 ## pre-v0.0.1 
-- [ ] Rewrite the retrieval service
+---- Deployment ----
+- [ ] Containerize Python server, React app and test locally
+---- Frontend ----
+- [ ] Make the Podcast player functional DONE
+- [ ] Enrich QA cards with episode data DONE
+---- Backend ----
+- [ ] Fix question duplication error (assemblyAI duplicates remain) DONE
+- [ ] Rewrite the retrieval service DONE
 - [ ] Create an Infinity embeddings serverless endpoint on Runpod DONE
 - [ ] Update Indexer service. Index questions and questions-answer pairs with chromadb DONE
 - [ ] Save questions and question-answer pairs to episode tables  DONE
@@ -31,6 +38,7 @@
 
 ## Hot ideas - parked
 - [ ] Questions from audience -> send to podcast authors 
+- [ ] Index per entity (person, company)
 - [ ] Mashups - Make your own hour long pod mashup of brilliant bits from thousands of podcasts
 - [ ] Get words from different podcast episodes and string them together to make rap songs
 
