@@ -2,17 +2,8 @@ import React, {
   useRef,
   useState,
   useEffect,
-  useImperativeHandle,
-  forwardRef,
 } from "react";
-
-interface Episode {
-  id: number;
-  title: string;
-  duration: number;
-  enclosureUrl: string;
-  image?: string;
-}
+import type { QAResult } from "./types";
 
 export interface PodcastPlayerHandle {
   seekTo: (seconds: number) => void;
@@ -20,8 +11,13 @@ export interface PodcastPlayerHandle {
   pause: () => void;
 }
 
-interface Props {
-  episode: Episode | null;
+interface PodcastPlayerProps {
+  episode: QAResult | null;
+  seekTime: { time: number; token: number } | null;
+  isPlaying: boolean;
+  onPlayStateChange: (playing: boolean) => void;
+  onSeekChange: (ms: number) => void;
+  onEnded?: () => void;
 }
 
 const formatTime = (seconds: number): string => {
@@ -31,98 +27,146 @@ const formatTime = (seconds: number): string => {
   return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 };
 
-const PodcastPlayer = forwardRef<PodcastPlayerHandle, Props>(
-  ({ episode }, ref) => {
+const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
+  episode,
+  isPlaying,
+  seekTime,
+  onPlayStateChange,
+  onSeekChange,
+  onEnded,
+}) =>{
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [progress, setProgress] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-
-    const handleTimeUpdate = () => {
-      if (audioRef.current) {
-        const { currentTime, duration } = audioRef.current;
-        setCurrentTime(currentTime);
-        setDuration(duration);
-        setProgress((currentTime / duration) * 100 || 0);
-      }
-    };
-
-    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (audioRef.current) {
-        const newTime =
-          (parseFloat(e.target.value) / 100) * audioRef.current.duration;
-        audioRef.current.currentTime = newTime;
-        setProgress(parseFloat(e.target.value));
-      }
-    };
-
-    const togglePlay = () => {
-      if (!audioRef.current) return;
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    };
-
-    const skip = (seconds: number) => {
-      if (audioRef.current) {
-        audioRef.current.currentTime = Math.min(
-          Math.max(audioRef.current.currentTime + seconds, 0),
-          audioRef.current.duration
-        );
-      }
-    };
-
-    // ✅ Expose methods for external control
-    useImperativeHandle(ref, () => ({
-      seekTo: (seconds: number) => {
-        if (!audioRef.current) {
-            console.warn("⚠️ Audio ref not ready yet.");
-            return;
-        }
-        if (typeof seconds !== "number" || !isFinite(seconds)) {
-            console.error("❌ Invalid seek time:", seconds);
-            return;
-        }
-        if (audioRef.current) {
-            console.log('Seeking to', seconds)
-          audioRef.current.currentTime = seconds;
-        }
-      },
-      play: () => {
-        audioRef.current?.play();
-        setIsPlaying(true);
-      },
-      pause: () => {
-        audioRef.current?.pause();
-        setIsPlaying(false);
-      },
-    }));
-
+    const [progress, setProgress] = useState(0);
+    
+    // Load Episode when it changes
     useEffect(() => {
-      const audio = audioRef.current;
-      if (audio) {
-        audio.addEventListener("timeupdate", handleTimeUpdate);
-        audio.addEventListener("loadedmetadata", handleTimeUpdate);
+    if (!episode || !audioRef.current) return;
+
+    const audio = audioRef.current;
+    audio.src = episode.enclosure_url;
+    audio.load();
+
+    // Reset state for new episode
+    setCurrentTime(0);
+    setDuration(0);
+    setProgress(0);
+
+  }, [episode]);
+
+  // Play/pause based on isPlaying prop
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+    if (isPlaying) {
+      audio.play().catch(err => console.warn("Play failed:", err));
+    } else {
+      audio.pause();
+    }
+
+  }, [isPlaying]);
+
+  // Seek when seekTime changes
+  useEffect(() => {
+    console.log('seek time changed', seekTime)
+    if (!audioRef.current) return;
+    if (seekTime == null) return;
+
+    audioRef.current.currentTime = seekTime.time / 1000;
+
+  }, [seekTime?.token]);
+
+  // Metadata loaded - set duration and other items
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleLoaded = () => {
+      setDuration(audio.duration || episode?.duration || 0);
+
+      // 🟢 Auto-seek AFTER load
+      if (seekTime.time != null) {
+        audio.currentTime = seekTime.time / 1000;
       }
-      return () => {
-        if (audio) {
-          audio.removeEventListener("timeupdate", handleTimeUpdate);
-          audio.removeEventListener("loadedmetadata", handleTimeUpdate);
-        }
-      };
-    }, []);
+      // 🟢 Auto-play AFTER the new source is ready
+      if (isPlaying) {
+        audio.play().catch(err => console.warn("Autoplay failed:", err));
+      }
 
-    if (!episode) return null;
+    };
 
+    audio.addEventListener("loadedmetadata", handleLoaded);
+    return () => audio.removeEventListener("loadedmetadata", handleLoaded);
+  }, [episode]);
+
+  // Track progress + emit playing state upward
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const update = () => {
+      setCurrentTime(audio.currentTime);
+      setDuration(audio.duration || 0);
+
+      if (audio.duration) {
+        setProgress((audio.currentTime / audio.duration) * 100);
+      }
+
+      onPlayStateChange?.(!audio.paused);
+    };
+
+    const handleEnded = () => {
+      onEnded?.();
+      onPlayStateChange?.(false);
+    };
+
+    audio.addEventListener("timeupdate", update);
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("timeupdate", update);
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [onPlayStateChange, onEnded]);
+  /////////
+  // User scrubs via slider
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+    const pct = Number(e.target.value);
+    const newTime = (pct / 100) * duration;
+
+    audioRef.current.currentTime = newTime;
+    setProgress(pct);
+  };
+
+  //
+  // Declarative toggle play
+  //
+  const togglePlay = () => {
+    onPlayStateChange(!isPlaying);
+  };
+  //
+  // Declarative skip
+  //
+  const skip = (deltaSeconds: number) => {
+    if (!audioRef.current) return;
+
+    const newSeconds = Math.min(
+      Math.max(audioRef.current.currentTime + deltaSeconds, 0),
+      duration
+    );
+
+    onSeekChange(newSeconds * 1000);
+  };
+
+  if (!episode) return null;
     return (
       <div className="fixed bottom-0 left-0 w-full bg-neutral-900 text-white h-[150px] flex items-center px-6 shadow-2xl">
-        {episode.image && (
+        {episode.episode_image && (
           <img
-            src={episode.image}
+            src={episode.episode_image}
             alt={episode.title}
             className="w-20 h-20 rounded-lg object-cover mr-6"
           />
@@ -175,10 +219,9 @@ const PodcastPlayer = forwardRef<PodcastPlayerHandle, Props>(
           </div>
         </div>
 
-        <audio ref={audioRef} src={episode.enclosureUrl} preload="metadata" />
+        <audio ref={audioRef} src={episode.enclosure_url} preload="metadata" />
       </div>
     );
   }
-);
 
 export default PodcastPlayer;
